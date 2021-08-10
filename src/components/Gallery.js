@@ -18,7 +18,10 @@ export default class Gallery extends React.Component {
     render(){
         return(
             <div>
-                <Row style={{justifyContent: 'center', backgroundColor: '#170229'}}>
+                <Row style={styles.title}>
+                    <span style={styles.titletext}>PHOTOS</span>
+                </Row>
+                <Row style={{justifyContent: 'center', backgroundColor: '#10011d'}}>
                     <Carousel fade style={styles.carousel}>
                         <Carousel.Item interval={5000}>
                             <img
@@ -105,8 +108,16 @@ export default class Gallery extends React.Component {
 }
 
 const styles = {
-    main: {
-        backgroundColor: 'black', 
+    title:{
+        fontSize: '72px',
+        paddingLeft: '20px',
+        backgroundColor: '#10011d',
+        color: "white",
+    },
+    titletext:{
+        borderBottom: '5px solid #44d9e8',
+        paddingRight: '75px',
+        marginBottom: '20px'
     },
     youtube: {
         height: '800px'
@@ -115,6 +126,6 @@ const styles = {
         justifyContent: 'center'
     },
     carousel: {
-        width: '85%'
+        width: '70%'
     }
 }

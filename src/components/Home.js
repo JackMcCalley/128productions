@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 import {Row, Column} from 'simple-flexbox'
-import Events from './Events.js'
-import Footer from './Footer.js'
 import YoutubeEmbed from './YoutubeEmbed.js'
 import Image from 'react-bootstrap/Image'
 import Carousel from 'react-bootstrap/Carousel'
@@ -114,9 +112,6 @@ export default class Home extends React.Component {
                         </Carousel.Item>
                     </Carousel>
                 </Row>
-                <Row>
-                    <Footer />
-                </Row>
             </div>
         )
     }
@@ -124,7 +119,7 @@ export default class Home extends React.Component {
 
 const styles = {
     main: {
-        backgroundColor:'#170229', 
+        backgroundColor:'#10011d', 
     },
     youtube: {
         height: '800px'

@@ -9,30 +9,25 @@ import dugan from '../images/dugan.png'
 import joshfedz from '../images/joshfedz.jpg'
 import phattjazz from '../images/phattjazz.png'
 import {MDBRipple} from 'mdb-react-ui-kit'
+import './hover.css'
 
 export default class Collective extends React.Component {
     render(){
         return(
-        <div style={{backgroundColor: '#170229'}}>
+        <div style={{backgroundColor: '#10011d'}}>
             <Row style={styles.title}>
-                <div>LINE UP</div>   
+                <span style={styles.titletext}>COLLECTIVE</span>   
             </Row>
-            <Row style={{width: '100%', backgroundColor: '#170229', justifyContent: 'center', marginBottom: '20px'}}>
+            <Row style={{width: '100%', backgroundColor: '#10011d', justifyContent: 'space-around', paddingBottom: '50px'}}>
                 <img style={styles.pics} src={rc3cut} />
-            </Row>
-            <Row style={{width: '100%', backgroundColor: '#170229', justifyContent: 'center', marginBottom: '20px'}}>
                 <img style={styles.pics} src={wessydecut} />
             </Row>
-            <Row style={{width: '100%', backgroundColor: '#170229', justifyContent: 'center', marginBottom: '20px'}}>
+            <Row style={{width: '100%', backgroundColor: '#10011d', justifyContent: 'space-around', paddingBottom: '50px'}}>
                 <img style={styles.pics} src={djvexx} />
-            </Row>
-            <Row style={{width: '100%', backgroundColor: '#170229', justifyContent: 'center', marginBottom: '20px'}}>
                 <img style={styles.pics} src={dugan} />
             </Row>
-            <Row style={{width: '100%', backgroundColor: '#170229', justifyContent: 'center', marginBottom: '20px'}}>
+            <Row style={{width: '100%', backgroundColor: '#10011d', justifyContent: 'space-around', paddingBottom: '50px'}}>
                 <img style={styles.pics} src={joshfedz} />
-            </Row>
-            <Row style={{width: '100%', backgroundColor: '#170229', justifyContent: 'center', marginBottom: '20px'}}>
                 <img style={styles.pics} src={phattjazz} />
             </Row>
         </div>
@@ -42,12 +37,18 @@ export default class Collective extends React.Component {
 
 const styles = {
     title: {
-        backgroundColor: '#170229',
+        backgroundColor: '#10011d',
         fontSize: '72px',
         fontFamily: 'Inherit',
-        justifyContent: 'center'
+        marginLeft: '20px',
+        color: 'white'
     },
     pics: {
-        width: '65%',
-    }
+        width: '40%',
+    },
+    titletext:{
+        borderBottom: '5px solid #44d9e8',
+        paddingRight: '75px',
+        marginBottom: '20px'
+    },
 }

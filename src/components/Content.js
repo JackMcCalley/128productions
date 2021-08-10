@@ -3,16 +3,16 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Home from './Home.js'
 import Events from './Events.js'
 import Merch from './Merch.js'
-import Tickets from './Tickets.js'
 import Collective from './Collective.js'
 import Navigation from './Navigation.js'
 import Gallery from './Gallery.js'
+import Footer from './Footer.js'
 import AuthService from '../services/AuthService'
 
 const Auth = new AuthService()
 
 const Content = () => (
-    <div>
+    <div style={{backgroundcolor: "#10011d"}}>
         <Navigation />
     {Auth.loggedIn() ?
             <Router>
@@ -20,10 +20,8 @@ const Content = () => (
                     <Route exact path="/" component={Home} />
                     <Route exact path='/events' component={Events} />
                     <Route exact path='/collective' component={Collective}/>
-                    <Route exact path='/tickets' component={Tickets}/>
                     <Route exact path='/merch' component={Merch}/>
-                    <Route exact path='/gallery' component={Gallery} />
-                    <Redirect from="/login" to="/account" />
+                    <Route exact path='/photos' component={Gallery} />
                     <Redirect from="/admin" to="/" />
                 </Switch>
             </Router>
@@ -34,14 +32,13 @@ const Content = () => (
                     <Route exact path="/" component={Home} />
                     <Route exact path='/events' component={Events} />
                     <Route exact path='/collective' component={Collective}/>
-                    <Route exact path='/tickets' component={Tickets}/>
                     <Route exact path='/merch' component={Merch}/>
-                    <Route exact path='/gallery' component={Gallery} />
-                    <Redirect from="/account" to="/login" />
+                    <Route exact path='/photos' component={Gallery} />
                     <Redirect from="/admin" to="/"/>
                 </Switch>
             </Router>
     }
+    <Footer />
     </div>
 )
 
