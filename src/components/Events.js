@@ -1,81 +1,104 @@
-import React from 'react';
-import {Row, Col} from 'simple-flexbox'
+import React, {useState, useEffect} from 'react';
+import {Row, Col} from 'react-simple-flex-grid'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import Table from 'react-bootstrap/Table'
-import eight from '../images/Gallery/eight.jpg'
+import Footer from './Footer.js'
+import "react-simple-flex-grid/lib/main.css";
 
-export default class Events extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            title: "Best event ever!",
-            cardText: "Watch the coolest DJ's perform the dopest songs",
-            date: "1/1/21",
-            loc: "Location"
-        }
+const query = `
+{
+  eventCollection {
+    items {
+      title
+      date
+      image {
+        url
+      }
+      location
+      ticketLink
+    }
+  }
+}`
+
+export default function Events() {
+
+    const [page, setPage] = useState(null);
+
+    //Contentful query
+    useEffect(() => {
+      window
+        .fetch(`https://graphql.contentful.com/content/v1/spaces/ohhrj9kqgtb2/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            //authenticate the request
+            Authorization: "Bearer hBWCYQUnz4Az_W-LftMbQByKRMfq88E5vpQg7zIKDPc",
+          },
+          //send the GraphQL query
+          body: JSON.stringify({query}),
+        })
+        .then((response) => response.json())
+        .then(({ data, errors }) => {
+          if(errors) {
+            console.error(errors);
+          }
+  
+          //rerender the entire component with new data
+          setPage(data.eventCollection.items)
+        })
+    }, []);
+  
+    //loading page
+    if (!page) {
+      return "Loading...";
     }
 
-    render(){
+    const eventArray = page.map(function(event, id){
+        return(
+        <Col span={4} style={{marginBottom: '30px'}}>
+          <Card>
+            <Card.Img key={id} style={styles.image} variant="top" src={event.image.url} />
+            <Card.Body>
+              <Card.Title key={id} style={{fontSize: "36px"}} >{event.title}</Card.Title>
+              <Card.Text key={id}>{event.cardText}</Card.Text>
+              <Card.Text key={id}>{event.date}</Card.Text>
+              <Card.Text key={id}>{event.location}</Card.Text>
+            </Card.Body>
+            <Button key={id} href={event.ticketLink} style={styles.button} bg="outline-light" variant="outline-light">TICKETS</Button>
+          </Card>
+        </Col>
+        )
+      })
+
         return(
             <div style={styles.body}>
                 <Row style={styles.main}>
                     <span style={styles.title}>EVENTS</span>
                 </Row>
-                <Row style={{marginLeft: '20px', justifyContent: 'space-around'}}>
-                    <Card>
-                        <Card.Img style={styles.image} variant="top" src={eight} />
-                        <Card.Body>
-                            <Card.Title style={{fontSize: "36px"}} >{this.state.title}</Card.Title>
-                            <Card.Text>{this.state.cardText}</Card.Text>
-                            <Card.Text>{this.state.date}</Card.Text>
-                            <Card.Text>{this.state.loc}</Card.Text>
-                        </Card.Body>
-                        <Button style={styles.button} bg="outline-light" variant="outline-light">TICKETS</Button>
-                    </Card>
-                    <Card>
-                        <Card.Img style={styles.image} variant="top" src={eight} />
-                        <Card.Body>
-                            <Card.Title style={{fontSize: "36px"}}>{this.state.title}</Card.Title>
-                            <Card.Text>{this.state.cardText}</Card.Text>
-                            <Card.Text>{this.state.date}</Card.Text>
-                            <Card.Text>{this.state.loc}</Card.Text>
-                        </Card.Body>
-                        <Button style={styles.button} bg="outline-light" variant="outline-light">TICKETS</Button>
-                    </Card>
-                    <Card style={{marginRight: '20px', justifyContent: 'center'}}>
-                        <Card.Img style={styles.image} variant="top" src={eight} />
-                        <Card.Body>
-                            <Card.Title style={{fontSize: "36px"}}>{this.state.title}</Card.Title>
-                            <Card.Text>{this.state.cardText}</Card.Text>
-                            <Card.Text>{this.state.date}</Card.Text>
-                            <Card.Text>{this.state.loc}</Card.Text>
-                        </Card.Body>
-                        <Button style={styles.button} bg="outline-light" variant="outline-light">TICKETS</Button>
-                    </Card>
+                <Row>
+                  {eventArray}
                 </Row>
             </div>
         )
     }
-}
 
 const styles = {
     main: {
-        fontSize: '72px',
+        fontSize: '64px',
         marginLeft: '20px',
         marginBottom: '20px',
         color: '#fff'
     },
     image: {
-        width: '450px'
+        width: '450px',
+        height: '300px'
     },
     body: {
-        height: '100vh',
-        backgroundColor: '#10011d'
+        height: '100%',
+        backgroundColor: '#10011d',
     },
     title: {
         borderBottom: '5px solid #44d9e8',
-        paddingRight: '75px'
     },
     button: {
         width: '50%',
