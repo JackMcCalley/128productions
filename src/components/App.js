@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import Content from './Content.js'
 import 'bootswatch/dist/vapor/bootstrap.min.css';
+import { Provider as StyletronProvider, DebugEngine } from "styletron-react"
+import { Client as Styletron } from "styletron-engine-atomic"
+import ShopProvider from './context/shopContext.js';
 
 const query = `
 {
@@ -15,6 +18,11 @@ const query = `
     }
   }
 }`
+
+const debug =
+  process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
+
+  const engine = new Styletron();
 
 function App() {
 
@@ -48,11 +56,15 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <Content style={{height: '100vh', minHeight: '100vh', backgroundColor: 'black'}}/>
-      </header>
-    </div>
+    <ShopProvider >
+      <StyletronProvider value={engine} debug={debug} debugAfterHydration>
+        <div className="App">
+          <header className="App-header">
+            <Content style={{height: '100vh', minHeight: '100vh', backgroundColor: 'black'}}/>
+          </header>
+        </div>
+      </StyletronProvider>
+    </ShopProvider>
   );
 }
 

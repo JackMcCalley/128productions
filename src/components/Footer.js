@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import justlogo from '../images/justlogo.png'
 import {Image, Button} from 'react-bootstrap'
 import FB from '../images/FB.png'
@@ -12,7 +12,7 @@ export default class Footer extends React.Component {
         return(
             <div style={{backgroundColor: '#10011d'}}>
             <Row style={{justifyContent: 'center', backgroundColor: '#10011d'}}>
-                <img src={justlogo}/>
+                <img alt="logo" src={justlogo}/>
             </Row>
             <Row style={{justifyContent: 'center'}}>
                 <p>Phone: (970) 986-9975</p>

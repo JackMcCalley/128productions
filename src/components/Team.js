@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react'
-import { Row, Col, Container, Div, Image } from 'atomize'
-import '../css/collective.css'
+import {Row} from 'simple-flexbox'
+import '../css/team.css'
 
 const query = `
 {
-    collectiveCollection{
+    teamCollection{
       items{
-        artistName
-        artistDescription
-              artistImage {
+        teamName
+        teamDescription
+              teamImage {
                 title
                 description
                 contentType
@@ -44,7 +44,7 @@ export default function Collective() {
               console.error(errors);
             }
             //rerender the entire component with new data
-            setPage(data.collectiveCollection.items)
+            setPage(data.teamCollection.items)
           })
       }, []);
 
@@ -53,34 +53,30 @@ export default function Collective() {
         return "Loading...";
       }
 
-      const collectiveArray = page.map(function(collective, id){
+      const teamArray = page.map(function(team, id){
           return(
-            <Div>
-              <Col size="6" style={{paddingBottom: '30px'}} class="gallery__item gallery__item--2">
-                <Container justify="center" align="center" w='auto'>
+              <Row style={{paddingBottom: '30px'}} class="gallery__item gallery__item--2">
                 <div class="img__wrap">
                   <div class="container">
-                    <Image h="30rem" w="30rem" alt="artist" style={{display: 'block'}} class="img__img" src={collective.artistImage.url} />
-                    <p class="centered">{collective.artistName}</p>
+                    <img alt="artist" style={styles.pics} class="img__img" src={team.teamImage.url} />
+                    <p class="centered">{team.teamName}</p>
                   </div>
                   <div class="img__description_layer">
-                    <p class="img__description">{collective.artistImage.description}</p>
+                    <p class="img__description">{team.teamImage.description}</p>
                   </div>
                 </div>
-                </Container>
-              </Col>
-            </Div>
+              </Row>
           )
       })
 
       return(
       <div style={{backgroundColor: '#10011d'}}>
         <Row style={styles.title}>
-          <span style={styles.titletext}>COLLECTIVE</span>   
+          <span style={styles.titletext}>OUR TEAM</span>   
         </Row>
-        <Container d="flex" flexWrap="wrap" flexDir={{ xs: 'column', lg: 'row'}} class="centered2">
-          {collectiveArray}
-        </Container>
+        <div class="centered2">
+          {teamArray}
+        </div>
       </div>
       )
     }

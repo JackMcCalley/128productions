@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {Row, Col} from 'react-simple-flex-grid'
+import {Row, Col, Div, Container} from 'atomize'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import Footer from './Footer.js'
 import "react-simple-flex-grid/lib/main.css";
 
 const query = `
@@ -44,6 +43,10 @@ export default function Events() {
           }
   
           //rerender the entire component with new data
+          let sortedData = data.eventCollection.items
+          sortedData.sort(function(a,b){
+            return new Date(a.date) - new Date(b.date)
+          })
           setPage(data.eventCollection.items)
         })
     }, []);
@@ -55,12 +58,15 @@ export default function Events() {
 
     const eventArray = page.map(function(event, id){
         return(
-        <Col span={4} style={{marginBottom: '30px'}}>
-          <Card>
+        
+        <Col size="4" style={{marginBottom: '30px', alignItems: 'stretch'}} h="auto">
+          <Card style={{alignItems: 'stretch'}}>
+            <Div w='15rem' h='15rem'>
             <Card.Img key={id} style={styles.image} variant="top" src={event.image.url} />
-            <Card.Body>
-              <Card.Title key={id} style={{fontSize: "36px"}} >{event.title}</Card.Title>
-              <Card.Text key={id}>{event.cardText}</Card.Text>
+            </Div>
+            <Card.Body style={{width: "15rem"}}>
+              <Card.Title key={id} style={{fontSize: "2rem"}} >{event.title}</Card.Title>
+              <Card.Text  key={id}>{event.cardText}</Card.Text>
               <Card.Text key={id}>{event.date}</Card.Text>
               <Card.Text key={id}>{event.location}</Card.Text>
             </Card.Body>
@@ -75,9 +81,9 @@ export default function Events() {
                 <Row style={styles.main}>
                     <span style={styles.title}>EVENTS</span>
                 </Row>
-                <Row>
+                <Container d="flex" flexWrap="wrap" flexDir={{ xs: 'column', lg: 'row'}} maxH={{ xs: 'auto', md: '100vp'}}>
                   {eventArray}
-                </Row>
+                </Container>
             </div>
         )
     }
@@ -87,21 +93,21 @@ const styles = {
         fontSize: '64px',
         marginLeft: '20px',
         marginBottom: '20px',
-        color: '#fff'
+        color: '#fff',
     },
     image: {
-        width: '450px',
-        height: '300px'
+        height: '15rem'
     },
     body: {
         height: '100%',
         backgroundColor: '#10011d',
+        justifyContent: 'center'
     },
     title: {
         borderBottom: '5px solid #44d9e8',
     },
     button: {
-        width: '50%',
-        marginLeft: '25%'
+        width: '15rem',
+        // marginLeft: '25%'
     }
 }

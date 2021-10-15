@@ -1,4 +1,12 @@
-
+/* quick reset and base styles */
+/* * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    align-items: center;
+    justify-content: center;
+  } */
+  
   html {
     font-family: helvetica, arial, sans-serif;
   }
@@ -16,7 +24,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(236, 33, 99, 25);
+    background: #6bcbd3;
     color: #fff;
     visibility: hidden;
     opacity: .0;

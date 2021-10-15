@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import {Row, Col} from 'simple-flexbox'
 import Carousel from 'react-bootstrap/Carousel'
-import Image from 'react-bootstrap/Image'
+import { Container, Row, Col, Div } from 'atomize'
 
 const query = 
 `
@@ -57,6 +56,7 @@ export default function Gallery() {
         return(
                 <Carousel.Item>
                   <img
+                    alt="gallery"
                     className="d-block w-100"
                     src={gallery.image.url}
                   />
@@ -65,16 +65,20 @@ export default function Gallery() {
         )
     })
         return(
-        <div>
+        <Div bg="#10011d">
             <Row style={styles.title}>
-                <span style={styles.titletext}>PHOTOS</span>
+                <span style={styles.titletext}>GALLERY</span>
             </Row>
-            <Row style={styles.carouselRow}>
-            <Carousel style={styles.carousel}>
-                {galleryArray}
-            </Carousel>
-            </Row>
-        </div>
+            <Div backgroundColor="#10011d">
+            <Container w='100%' backgroundColor="#10011d">
+              <Row style={styles.carouselRow}>
+              <Carousel style={styles.carousel}>
+                  {galleryArray}
+              </Carousel>
+              </Row>
+            </Container>
+            </Div>
+        </Div>
         )
 }
 
@@ -91,7 +95,6 @@ const styles = {
         backgroundColor: "#10011d"
     },
     carousel: {
-        width: '70%',
         backgroundColor: "#10011d"
     },
     carouselRow: {

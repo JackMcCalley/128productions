@@ -1,29 +1,60 @@
-import React from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import {Row} from 'simple-flexbox'
 import YoutubeEmbed from './YoutubeEmbed.js'
-import Image from 'react-bootstrap/Image'
-import justlogo from '../images/justlogo.png'
 import "../css/youtubeEmbed.css"
+import { ShopContext } from './context/shopContext'
 
-export default class Home extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-
-        }
+const query = 
+`
+  {
+    youtubeCollection{
+      items{
+        url
+      }
     }
+  }
+`
 
-    render(){
+export default function Home() {
+    const [page, setPage] = useState(null);
+
+    //Contentful query
+    useEffect(() => {
+      window
+        .fetch(`https://graphql.contentful.com/content/v1/spaces/ohhrj9kqgtb2/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            //authenticate the request
+            Authorization: "Bearer hBWCYQUnz4Az_W-LftMbQByKRMfq88E5vpQg7zIKDPc",
+          },
+          //send the GraphQL query
+          body: JSON.stringify({query}),
+        })
+        .then((response) => response.json())
+        .then(({ data, errors }) => {
+          if(errors) {
+            console.error(errors);
+          }
+  
+          //rerender the entire component with new data
+          setPage(data.youtubeCollection.items[0])
+        })
+    }, []);
+  
+    //loading page
+    if (!page) {
+      return "Loading...";
+    }
         return(
             <div style={{backgroundColor:'#10011d'}}>
                 <div style={{width: "70%", marginLeft: "15%"}}>
-                <YoutubeEmbed style={styles.youtube} embedId="FsHV2eSn8iI" /> 
+                <YoutubeEmbed style={styles.youtube} embedId={page.url} /> 
                 </div>
                 <Row style={styles.center}>
                 </Row>
             </div>
         )
-    }
 }
 
 const styles = {

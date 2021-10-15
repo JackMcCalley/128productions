@@ -1,5 +1,5 @@
 const storefrontAccessToken = {
-    sfat: '772cf892ddb5e84b827476017f5cb819'
+    sfat: 'e8f1b6a5349038d9cea206f9de51fed6'
   }
   
   export default storefrontAccessToken

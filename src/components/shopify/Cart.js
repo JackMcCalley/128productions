@@ -1,66 +1,45 @@
-import React, {Component} from 'react';
-import LineItem from './LineItem';
+import React, { useContext } from 'react'
+import { ShopContext } from '../context/shopContext'
+import { Div, SideDrawer, Text, Row, Col, Anchor} from 'atomize'
+import { Button } from 'react-bootstrap'
 
-class Cart extends Component {
-  constructor(props) {
-    super(props);
+const Cart = () => {
 
-    this.openCheckout = this.openCheckout.bind(this);
-  }
-
-  openCheckout() {
-    window.open(this.props.checkout.webUrl);
-  }
-
-  render() {
-    let line_items = this.props.checkout.lineItems.map((line_item) => {
-      return (
-        <LineItem
-          updateQuantityInCart={this.props.updateQuantityInCart}
-          removeLineItemInCart={this.props.removeLineItemInCart}
-          key={line_item.id.toString()}
-          line_item={line_item}
-        />
-      );
-    });
+    const { isCartOpen, closeCart, checkout } = useContext(ShopContext)
 
     return (
-      <div className={`Cart ${this.props.isCartOpen ? 'Cart--open' : ''}`}>
-        <header className="Cart__header">
-          <h2>Your cart</h2>
-          <button
-            onClick={this.props.handleCartClose}
-            className="Cart__close">
-            ×
-          </button>
-        </header>
-        <ul className="Cart__line-items">
-          {line_items}
-        </ul>
-        <footer className="Cart__footer">
-          <div className="Cart-info clearfix">
-            <div className="Cart-info__total Cart-info__small">Subtotal</div>
-            <div className="Cart-info__pricing">
-              <span className="pricing">$ {this.props.checkout.subtotalPrice}</span>
-            </div>
-          </div>
-          <div className="Cart-info clearfix">
-            <div className="Cart-info__total Cart-info__small">Taxes</div>
-            <div className="Cart-info__pricing">
-              <span className="pricing">$ {this.props.checkout.totalTax}</span>
-            </div>
-          </div>
-          <div className="Cart-info clearfix">
-            <div className="Cart-info__total Cart-info__small">Total</div>
-            <div className="Cart-info__pricing">
-              <span className="pricing">$ {this.props.checkout.totalPrice}</span>
-            </div>
-          </div>
-          <button className="Cart__checkout button" onClick={this.openCheckout}>Checkout</button>
-        </footer>
-      </div>
+        <SideDrawer isOpen={isCartOpen} onClose={closeCart}>
+            <Div d="flex" flexDir="column" m={{ b: "4rem" }}>
+                <Row justify="flex-end">
+                    <Button bg="outline-light" variant="outline-light" style={{color: '#6bcbd3'}} onClick={closeCart}>
+                        X
+                    </Button>
+                </Row>
+                {checkout.lineItems && checkout.lineItems.map(item => (
+                    <Row key={item.id}>
+                        <Col>
+                            <Div bgImg={item.variant.image.src} bgSize="cover" bgPos="center center" h="10rem" w="10rem"/>
+                        </Col>
+                        <Col>
+                            <Text>{item.title}</Text>
+                            <Text>{item.variant.title}</Text>
+                            <Text>Quantity: {item.quantity}</Text>
+                        </Col>
+                        <Col>
+                            <Text>${item.variant.price}</Text>
+                        </Col>
+                    </Row>
+                ))}
+                <Anchor p="1rem" m="1rem" textSize="heading" textColor="black" textAlign='center' bg="#6bcbd3" style={styles.checkout} href={checkout.webUrl} target="_blank">CHECKOUT</Anchor>
+            </Div>
+        </SideDrawer>
     )
-  }
 }
 
-export default Cart;
+const styles= {
+    checkout: {
+        borderRadius: '1px',
+    }
+}
+
+export default Cart
