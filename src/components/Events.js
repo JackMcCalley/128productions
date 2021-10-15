@@ -61,8 +61,15 @@ export default function Events() {
         
         <Col size="4" style={{marginBottom: '30px', alignItems: 'stretch'}} h="auto">
           <Card style={{alignItems: 'stretch'}}>
-            <Div w='15rem' h='15rem'>
-            <Card.Img key={id} style={styles.image} variant="top" src={event.image.url} />
+            <Div 
+              bg="black" 
+              w= {{xs: '10rem', md: '15rem'}}
+              h= {{xs: '10rem', md: '15rem'}}
+              justify='center' 
+              align='center' 
+              d='flex'
+            >
+            <Card.Img key={id} variant="top" src={event.image.url} />
             </Div>
             <Card.Body style={{width: "15rem"}}>
               <Card.Title key={id} style={{fontSize: "2rem"}} >{event.title}</Card.Title>
@@ -94,9 +101,6 @@ const styles = {
         marginLeft: '20px',
         marginBottom: '20px',
         color: '#fff',
-    },
-    image: {
-        height: '15rem'
     },
     body: {
         height: '100%',

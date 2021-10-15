@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Row, Col, Container, Div, Image } from 'atomize'
+import { Row, Col, Container, Div, Image, Text } from 'atomize'
 import '../css/collective.css'
 
 const query = `
@@ -8,16 +8,16 @@ const query = `
       items{
         artistName
         artistDescription
-              artistImage {
-                title
-                description
-                contentType
-                fileName
-                size
-                url
-                width
-                height
-              }
+        artistImage {
+          title
+          description
+          contentType
+          fileName
+          size
+          url
+          width
+          height
+        }
       }
     }
   }`
@@ -25,6 +25,7 @@ const query = `
 export default function Collective() {
 
     const [page, setPage] = useState(null);
+    const [onHover, setOnHover] = useState(false)
 
     useEffect(() => {
         window
@@ -54,22 +55,51 @@ export default function Collective() {
       }
 
       const collectiveArray = page.map(function(collective, id){
-          return(
-            <Div>
-              <Col size="6" style={{paddingBottom: '30px'}} class="gallery__item gallery__item--2">
-                <Container justify="center" align="center" w='auto'>
-                <div class="img__wrap">
-                  <div class="container">
-                    <Image h="30rem" w="30rem" alt="artist" style={{display: 'block'}} class="img__img" src={collective.artistImage.url} />
-                    <p class="centered">{collective.artistName}</p>
-                  </div>
-                  <div class="img__description_layer">
-                    <p class="img__description">{collective.artistImage.description}</p>
-                  </div>
-                </div>
-                </Container>
-              </Col>
-            </Div>
+        let collectiveText
+
+        if(onHover){
+          collectiveText = collective.artistImage.description
+        } else {
+          collectiveText = collective.artistName
+        }
+        return(
+            <Col size="6" style={{paddingBottom: '30px'}}>
+              <Container 
+                flexDir={{xs: 'col', md: 'row'}} 
+                flexWrap="wrap"
+              >
+                <Div 
+                  bg="black" 
+                  w= {{xs: '20rem', md: '30rem'}}
+                  h= {{xs: '20rem', md: '30rem'}}
+                  justify='center' 
+                  align='center' 
+                  d='flex'
+                >
+                  <Image 
+                    pos='static' 
+                    top='0' 
+                    right='0' 
+                    h='auto' 
+                    w='auto' 
+                    maxW= {{xs: '20rem', md: '30rem'}}
+                    maxH= {{xs: '20rem', md: '30rem'}}
+                    alt="artist" 
+                    src={collective.artistImage.url} 
+                  />
+                  <Text 
+                    textWeight="600" 
+                    textColor="#ec2163"  
+                    pos='absolute'
+                    textSize="4rem" 
+                    d="flex" 
+                    flexWrap='wrap'
+                  >
+                    {collectiveText}
+                  </Text>
+                </Div>
+              </Container>
+            </Col>
           )
       })
 
