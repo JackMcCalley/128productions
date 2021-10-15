@@ -3,6 +3,7 @@ import {Row} from 'simple-flexbox'
 import YoutubeEmbed from './YoutubeEmbed.js'
 import "../css/youtubeEmbed.css"
 import { ShopContext } from './context/shopContext'
+import { Div } from 'atomize'
 
 const query = 
 `
@@ -47,13 +48,13 @@ export default function Home() {
       return "Loading...";
     }
         return(
-            <div style={{backgroundColor:'#10011d'}}>
-                <div style={{width: "70%", marginLeft: "15%"}}>
-                <YoutubeEmbed style={styles.youtube} embedId={page.url} /> 
-                </div>
+            <Div w="100%" style={{backgroundColor:'#10011d'}}>
+                <Div w={{md: '70%'}} m={{l: {xs: '0%', md: '15%' }}} justify='center'>
+                  <YoutubeEmbed style={styles.youtube} embedId={page.url} /> 
+                </Div>
                 <Row style={styles.center}>
                 </Row>
-            </div>
+            </Div>
         )
 }
 
