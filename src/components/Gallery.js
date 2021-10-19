@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Carousel from 'react-bootstrap/Carousel'
 import { Container, Row, Col, Div } from 'atomize'
+import ImageGallery from 'react-image-gallery'
 
 const query = 
 `
@@ -42,7 +43,6 @@ export default function Gallery() {
   
           //rerender the entire component with new data
           setPage(data.photoGalleryCollection.items)
-          console.log(data)
         })
     }, []);
   
@@ -52,7 +52,6 @@ export default function Gallery() {
     }
 
     const galleryArray = page.map(function(gallery, id){
-      console.log(gallery.url)
         return(
                 <Carousel.Item>
                   <img
@@ -64,6 +63,7 @@ export default function Gallery() {
                 
         )
     })
+
         return(
         <Div bg="#10011d">
             <Row style={styles.title}>

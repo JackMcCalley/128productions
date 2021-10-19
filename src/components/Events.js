@@ -57,22 +57,31 @@ export default function Events() {
     }
 
     const eventArray = page.map(function(event, id){
+      let title = event.title
+      if (title.length > 50){
+        title = title.substring(0,30) + "..."
+        console.log(title);
+      } else if (title.length < 15){
+        title = title + "               "
+      }
+       else {
+        title = title
+      }
         return(
-        
-        <Col size="4" style={{marginBottom: '30px', alignItems: 'stretch'}} h="auto">
+        <Col size="4" style={{marginBottom: '30px', alignItems: 'space-around'}} h="auto">
           <Card style={{alignItems: 'stretch'}}>
             <Div 
               bg="black" 
-              w= {{xs: '10rem', md: '15rem'}}
-              h= {{xs: '10rem', md: '15rem'}}
+              w= {{xs: '15rem', md: '20rem'}}
+              h= {{xs: '15rem', md: '20rem'}}
               justify='center' 
               align='center' 
               d='flex'
             >
             <Card.Img key={id} variant="top" src={event.image.url} />
             </Div>
-            <Card.Body style={{width: "15rem"}}>
-              <Card.Title key={id} style={{fontSize: "2rem"}} >{event.title}</Card.Title>
+            <Card.Body style={{width: "20rem", height: '15rem'}}>
+              <Card.Title key={id} style={{fontSize: "2rem"}} >{title}</Card.Title>
               <Card.Text  key={id}>{event.cardText}</Card.Text>
               <Card.Text key={id}>{event.date}</Card.Text>
               <Card.Text key={id}>{event.location}</Card.Text>
@@ -84,14 +93,14 @@ export default function Events() {
       })
 
         return(
-            <div style={styles.body}>
-                <Row style={styles.main}>
+            <Div h="100%" w="100%" justify="space-around" style={styles.body}>
+                <Row justify='space-between' style={styles.main}>
                     <span style={styles.title}>EVENTS</span>
                 </Row>
                 <Container d="flex" flexWrap="wrap" flexDir={{ xs: 'column', lg: 'row'}} maxH={{ xs: 'auto', md: '100vp'}}>
                   {eventArray}
                 </Container>
-            </div>
+            </Div>
         )
     }
 
@@ -103,9 +112,7 @@ const styles = {
         color: '#fff',
     },
     body: {
-        height: '100%',
         backgroundColor: '#10011d',
-        justifyContent: 'center'
     },
     title: {
         borderBottom: '5px solid #44d9e8',

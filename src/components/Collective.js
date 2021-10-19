@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Row, Col, Container, Div, Image, Text } from 'atomize'
+import { Link } from 'react-router-dom'
 import '../css/collective.css'
 
 const query = `
@@ -25,7 +26,7 @@ const query = `
 export default function Collective() {
 
     const [page, setPage] = useState(null);
-    const [onHover, setOnHover] = useState(false)
+    const [isShown, setIsShown] = useState(false)
 
     useEffect(() => {
         window
@@ -57,7 +58,7 @@ export default function Collective() {
       const collectiveArray = page.map(function(collective, id){
         let collectiveText
 
-        if(onHover){
+        if(isShown){
           collectiveText = collective.artistImage.description
         } else {
           collectiveText = collective.artistName
@@ -68,6 +69,7 @@ export default function Collective() {
                 flexDir={{xs: 'col', md: 'row'}} 
                 flexWrap="wrap"
               >
+
                 <Div 
                   bg="black" 
                   w= {{xs: '20rem', md: '30rem'}}
@@ -75,6 +77,7 @@ export default function Collective() {
                   justify='center' 
                   align='center' 
                   d='flex'
+
                 >
                   <Image 
                     pos='static' 
@@ -82,17 +85,18 @@ export default function Collective() {
                     right='0' 
                     h='auto' 
                     w='auto' 
-                    maxW= {{xs: '20rem', md: '30rem'}}
-                    maxH= {{xs: '20rem', md: '30rem'}}
+                    maxW= {{xs: '13rem', md: '30rem'}}
+                    maxH= {{xs: '13rem', md: '30rem'}}
                     alt="artist" 
-                    src={collective.artistImage.url} 
+                    src={collective.artistImage.url}
                   />
                   <Text 
                     textWeight="600" 
                     textColor="#ec2163"  
                     pos='absolute'
                     textSize="4rem" 
-                    d="flex" 
+                    d="flex"
+                    p="1rem"
                     flexWrap='wrap'
                   >
                     {collectiveText}

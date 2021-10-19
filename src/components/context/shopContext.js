@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Client from 'shopify-buy'
-// import storefrontAccessToken from '../shopify/Storefront'
 const ShopContext = React.createContext()
 
 const client = Client.buildClient({
@@ -19,12 +18,26 @@ class ShopProvider extends Component {
     }
 
     componentDidMount() {
+        //check if localStorage has a checkout_id
         this.createCheckout()
+        if (localStorage.checkout_id) {
+            this.fetchCheckout(localStorage.checkout_id)
+        } else {
+            this.createCheckout()
+        }
+
     }
 
     createCheckout = async () => {
         const checkout = await client.checkout.create()
-        this.setState({ checkout: checkout })
+        localStorage.setItem("checkout_id", checkout.id)
+        await this.setState({ checkout: checkout })
+    }
+
+    fetchCheckout = async (checkoutId) => {
+        client.checkout.fetch(checkoutId).then(checkout =>{
+            this.setState({checkout: checkout})
+        }).catch(err => console.long(err))
     }
 
     addItemToCheckout = async (variantId, quantity) => {
@@ -34,6 +47,15 @@ class ShopProvider extends Component {
         }]
 
         const checkout = await client.checkout.addLineItems(this.state.checkout.id, lineItemsToAdd)
+        this.setState({ checkout: checkout })
+    }
+
+    removeItemFromCheckout = async (variantId, quantity) => {
+        const lineItemsToRemove= [{
+            variantId
+        }]
+
+        const checkout = await client.checkout.removeLineItems(this.state.checkoutId, lineItemsToRemove)
         this.setState({ checkout: checkout })
     }
 
