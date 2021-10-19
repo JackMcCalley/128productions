@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Row, Col, Container, Div, Image, Text } from 'atomize'
-import { Link } from 'react-router-dom'
+
 import '../css/collective.css'
 
 const query = `
@@ -69,7 +69,6 @@ export default function Collective() {
               flexDir={{xs: 'col', md: 'row'}} 
               flexWrap="wrap"
             >
-
               <Div 
                 bg="black" 
                 w= {{xs: '20rem', md: '30rem'}}
@@ -85,19 +84,20 @@ export default function Collective() {
                   right='0' 
                   h='auto' 
                   w='auto' 
-                  maxW= {{xs: '13rem', md: '30rem'}}
-                  maxH= {{xs: '13rem', md: '30rem'}}
+                  maxW= {{xs: '20rem', md: '30rem'}}
+                  maxH= {{xs: '20rem', md: '30rem'}}
                   alt="artist" 
                   src={team.teamImage.url}
                 />
                 <Text 
-                  textWeight="600" 
-                  textColor="#ec2163"  
+                  textWeight="500" 
+                  textColor="#6bcbd3"  
                   pos='absolute'
                   textSize="4rem" 
                   d="flex"
                   p="1rem"
                   flexWrap='wrap'
+                  transform={{xs: 'translateY(20%)', md: 'translateY(150%)'}}
                 >
                   {teamText}
                 </Text>

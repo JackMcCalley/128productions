@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ShopContext } from './context/shopContext'
-import { Text, Div, Row, Col, Container, Dropdown, Anchor } from 'atomize'
+import {  Div, Row, Col, Container, Dropdown, Anchor } from 'atomize'
 import { Card, Button, Form } from 'react-bootstrap'
-import Carousel from 'react-responsive-carousel'
+
 
 
 

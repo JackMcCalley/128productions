@@ -64,9 +64,7 @@ export default function Events() {
       } else if (title.length < 15){
         title = title + "               "
       }
-       else {
-        title = title
-      }
+      
         return(
         <Col size="4" style={{marginBottom: '30px', alignItems: 'space-around'}} h="auto">
           <Card style={{alignItems: 'stretch'}}>

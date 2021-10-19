@@ -7,7 +7,6 @@ import Collective from './Collective.js'
 import Navigation from './Navigation.js'
 import Gallery from './Gallery.js'
 import Footer from './Footer.js'
-import { ShopContext } from './context/shopContext.js';
 import Cart from './shopify/Cart.js';
 import ProductPage from './ProductPage.js';
 import Team from './Team.js'

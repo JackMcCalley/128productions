@@ -1,8 +1,7 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, { useState, useEffect} from 'react'
 import {Row} from 'simple-flexbox'
 import YoutubeEmbed from './YoutubeEmbed.js'
 import "../css/youtubeEmbed.css"
-import { ShopContext } from './context/shopContext'
 import { Div } from 'atomize'
 
 const query = 

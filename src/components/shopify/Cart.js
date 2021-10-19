@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { ShopContext } from '../context/shopContext'
-import { Div, SideDrawer, Text, Row, Col, Anchor, Input } from 'atomize'
+import { Div, SideDrawer, Text, Row, Col, Anchor } from 'atomize'
 import { Button } from 'react-bootstrap'
 
 const Cart = () => {
 
-    const { isCartOpen, closeCart, checkout, removeItemFromCheckout } = useContext(ShopContext)
+    const { isCartOpen, closeCart, checkout } = useContext(ShopContext)
 
     return (
         <SideDrawer isOpen={isCartOpen} onClose={closeCart}>
@@ -28,10 +28,23 @@ const Cart = () => {
                         <Col>
                             <Text>${item.variant.price * item.quantity}</Text>
                         </Col>
-                        {/* <Button variant='dark' color="black" onClick={removeItemFromCheckout}>X</Button> */}
                     </Row>
                 ))}
-                <Anchor p="1rem" m="1rem" textSize="heading" textColor="black" textAlign='center' bg="#6bcbd3" style={styles.checkout} href={checkout.webUrl} target="_blank">CHECKOUT</Anchor>
+                {/* <Button style={{marginTop: '2rem'}} variant='dark' color="black" onClick={createCheckout}>Clear Shopping Cart</Button> */}
+                <Anchor 
+                    p="1rem" 
+                    m="1rem" 
+                    textSize="heading" 
+                    textColor="white" 
+                    textAlign='center' 
+                    bg="black" 
+                    hoverTextColor="gray" 
+                    style={styles.checkout} 
+                    href={checkout.webUrl} 
+                    target="_blank"
+                >
+                    CHECKOUT
+                </Anchor>
             </Div>
         </SideDrawer>
     )

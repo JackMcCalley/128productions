@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import { Row, Col, Container, Div, Image, Text } from 'atomize'
-import { Link } from 'react-router-dom'
+import { Row, Col, Container, Div, Image, Text, Modal, Icon } from 'atomize'
+import { Button } from 'react-bootstrap'
 import '../css/collective.css'
 
 const query = `
@@ -26,7 +26,10 @@ const query = `
 export default function Collective() {
 
     const [page, setPage] = useState(null);
-    const [isShown, setIsShown] = useState(false)
+    const [show, setShow] = useState(false)
+
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
 
     useEffect(() => {
         window
@@ -54,22 +57,37 @@ export default function Collective() {
       if (!page) {
         return "Loading...";
       }
+      
+      const AlignStartModal = ({ isOpen, onClose, collective }) => {
+        return(
+          <Modal isOpen={isOpen} onClose={onClose} align="center" rounded="md">
+            <Icon
+              name="Cross"
+              pos="absolute"
+              top="1rem"
+              right="1rem"
+              size="16px"
+              onClick={onClose}
+              cursor="pointer"
+            />
+            <Div d="flex" m={{ b: "4rem" }}>
+              <Text textColor="black" p={{ l: "0.5rem", t: "0.25rem" }} textSize="subheader">
+                {collective}
+              </Text>
+            </Div>
+          </Modal>
+        )
+      }
 
       const collectiveArray = page.map(function(collective, id){
-        let collectiveText
-
-        if(isShown){
-          collectiveText = collective.artistImage.description
-        } else {
-          collectiveText = collective.artistName
-        }
+        
+        let collectiveText = collective.artistName
         return(
             <Col size="6" style={{paddingBottom: '30px'}}>
               <Container 
                 flexDir={{xs: 'col', md: 'row'}} 
                 flexWrap="wrap"
               >
-
                 <Div 
                   bg="black" 
                   w= {{xs: '20rem', md: '30rem'}}
@@ -85,8 +103,8 @@ export default function Collective() {
                     right='0' 
                     h='auto' 
                     w='auto' 
-                    maxW= {{xs: '13rem', md: '30rem'}}
-                    maxH= {{xs: '13rem', md: '30rem'}}
+                    maxW= {{xs: '20rem', md: '30rem'}}
+                    maxH= {{xs: '20rem', md: '30rem'}}
                     alt="artist" 
                     src={collective.artistImage.url}
                   />
@@ -98,15 +116,26 @@ export default function Collective() {
                     d="flex"
                     p="1rem"
                     flexWrap='wrap'
+                    transform={{xs: 'translateY(50%)', md: 'translateY(200%)'}}
                   >
                     {collectiveText}
                   </Text>
                 </Div>
+                <Div>
+                <Button variant='dark' onClick={handleShow}>
+                  Read more...
+                </Button>
+                  <AlignStartModal
+                    isOpen={show}
+                    onClose={handleClose}
+                    collective={collective.artistImage.description}
+                  />
+                </Div>
               </Container>
             </Col>
           )
-      })
-
+      })    
+      
       return(
       <div style={{backgroundColor: '#10011d'}}>
         <Row style={styles.title}>

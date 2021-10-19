@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Carousel from 'react-bootstrap/Carousel'
-import { Container, Row, Col, Div } from 'atomize'
-import ImageGallery from 'react-image-gallery'
+import { Container, Row, Div } from 'atomize'
 
 const query = 
 `

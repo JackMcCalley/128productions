@@ -1,14 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import { ShopContext } from './context/shopContext'
-import { Container, Text, Div, Row, Col } from 'atomize'
+import { Container, Div, Row, Col } from 'atomize'
 import { Link } from 'react-router-dom'
-import { Card, Button } from 'react-bootstrap'
-// import Client from 'shopify-buy'
-// import storefrontAccessToken from './shopify/Storefront'
-// import Products from './shopify/Products'
-// import Product from './shopify/Product'
-import Cart from './shopify/Cart'
-// import VariantSelector from './shopify/VariantSelector'
+import { Card } from 'react-bootstrap'
 
 
 
