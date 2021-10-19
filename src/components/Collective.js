@@ -28,10 +28,7 @@ export default function Collective() {
 
     const [page, setPage] = useState(null);
     const [modalIsOpen, setIsOpen] = React.useState(false)
-
-    function openModal() {
-      setIsOpen(true)
-    }
+    const [description, setDescription] = useState(null)
 
     function closeModal(){
       setIsOpen(false)
@@ -67,6 +64,7 @@ export default function Collective() {
       const collectiveArray = page.map(function(collective, id){
         let collectiveText = collective.artistName
         let collectiveDescription = collective.artistImage.description
+        
         return(
             <Col key={id} size="6" style={{paddingBottom: '30px'}}>
               <Container 
@@ -106,25 +104,9 @@ export default function Collective() {
                   </Text>
                 </Div>
                 <Div>
-                <Button variant='dark' onClick={openModal}>
+                <Button variant='dark' onClick={() => {setDescription(collectiveDescription); setIsOpen(true); console.log(collectiveDescription);}}>
                   Read more...
                 </Button>
-                <Div>
-                  <ReactModal
-                    isOpen={modalIsOpen}
-                    onRequestClose={closeModal}
-                    style={styles.content}
-                    contentLabel="More Info"
-                    ariaHideApp={false}
-                  >
-                    <Div textColor="black">
-                      {collectiveDescription}
-                    </Div>
-                    <Button variant='dark' onClick={closeModal}>
-                      Close
-                    </Button>
-                  </ReactModal>
-                </Div>
                 </Div>
               </Container>
             </Col>
@@ -139,6 +121,30 @@ export default function Collective() {
         <Container d="flex" flexWrap="wrap" flexDir={{ xs: 'column', lg: 'row'}}>
           {collectiveArray}
         </Container>
+        <Div>
+          <ReactModal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={{
+              content: styles.content,
+              overlay: {
+                width: '80%',
+                height: '1rem',
+                marginLeft: '10%',
+                marginTop: '25%',
+                backgroundColor: 'black'
+              }}}
+            contentLabel="More Info"
+            ariaHideApp={false}
+          >
+            <Text>
+              {description}
+            </Text>
+            <Button variant='dark' onClick={closeModal}>
+              Close
+            </Button>
+          </ReactModal>
+        </Div>
       </div>
       )
     }
@@ -168,6 +174,7 @@ const styles = {
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
-      transform: 'translate(-50%, -50%)'
+      transform: 'translate(-50%, -50%)',
+      backgroundColor: 'black'
     }
 }
