@@ -112,7 +112,7 @@ export default function Collective() {
       <Row style={styles.title}>
         <span style={styles.titletext}>TEAM</span>   
       </Row>
-      <Container d="flex" flexWrap="wrap" flexDir={{ xs: 'column', lg: 'row'}} class="centered2">
+      <Container d="flex" flexWrap="wrap" flexDir={{ xs: 'column', lg: 'row'}}>
         {teamArray}
       </Container>
     </div>

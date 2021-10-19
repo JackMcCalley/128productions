@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import { Row, Col, Container, Div, Image, Text, Modal, Icon } from 'atomize'
+import { Row, Col, Container, Div, Image, Text } from 'atomize'
 import { Button } from 'react-bootstrap'
 import '../css/collective.css'
+import ReactModal from 'react-modal'
 
 const query = `
 {
@@ -26,10 +27,15 @@ const query = `
 export default function Collective() {
 
     const [page, setPage] = useState(null);
-    const [show, setShow] = useState(false)
+    const [modalIsOpen, setIsOpen] = React.useState(false)
 
-    const handleClose = () => setShow(false)
-    const handleShow = () => setShow(true)
+    function openModal() {
+      setIsOpen(true)
+    }
+
+    function closeModal(){
+      setIsOpen(false)
+    }
 
     useEffect(() => {
         window
@@ -57,45 +63,23 @@ export default function Collective() {
       if (!page) {
         return "Loading...";
       }
-      
-      const AlignStartModal = ({ isOpen, onClose, collective }) => {
-        return(
-          <Modal isOpen={isOpen} onClose={onClose} align="center" rounded="md">
-            <Icon
-              name="Cross"
-              pos="absolute"
-              top="1rem"
-              right="1rem"
-              size="16px"
-              onClick={onClose}
-              cursor="pointer"
-            />
-            <Div d="flex" m={{ b: "4rem" }}>
-              <Text textColor="black" p={{ l: "0.5rem", t: "0.25rem" }} textSize="subheader">
-                {collective}
-              </Text>
-            </Div>
-          </Modal>
-        )
-      }
 
       const collectiveArray = page.map(function(collective, id){
-        
         let collectiveText = collective.artistName
+        let collectiveDescription = collective.artistImage.description
         return(
-            <Col size="6" style={{paddingBottom: '30px'}}>
+            <Col key={id} size="6" style={{paddingBottom: '30px'}}>
               <Container 
                 flexDir={{xs: 'col', md: 'row'}} 
                 flexWrap="wrap"
               >
                 <Div 
                   bg="black" 
-                  w= {{xs: '20rem', md: '30rem'}}
-                  h= {{xs: '20rem', md: '30rem'}}
+                  w={{xs: '20rem', md: '30rem'}}
+                  h={{xs: '20rem', md: '30rem'}}
                   justify='center' 
                   align='center' 
                   d='flex'
-
                 >
                   <Image 
                     pos='static' 
@@ -122,14 +106,25 @@ export default function Collective() {
                   </Text>
                 </Div>
                 <Div>
-                <Button variant='dark' onClick={handleShow}>
+                <Button variant='dark' onClick={openModal}>
                   Read more...
                 </Button>
-                  <AlignStartModal
-                    isOpen={show}
-                    onClose={handleClose}
-                    collective={collective.artistImage.description}
-                  />
+                <Div>
+                  <ReactModal
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    style={styles.content}
+                    contentLabel="More Info"
+                    ariaHideApp={false}
+                  >
+                    <Div textColor="black">
+                      {collectiveDescription}
+                    </Div>
+                    <Button variant='dark' onClick={closeModal}>
+                      Close
+                    </Button>
+                  </ReactModal>
+                </Div>
                 </Div>
               </Container>
             </Col>
@@ -137,11 +132,11 @@ export default function Collective() {
       })    
       
       return(
-      <div style={{backgroundColor: '#10011d'}}>
+      <div id='main' style={{backgroundColor: '#10011d'}}>
         <Row style={styles.title}>
           <span style={styles.titletext}>COLLECTIVE</span>   
         </Row>
-        <Container d="flex" flexWrap="wrap" flexDir={{ xs: 'column', lg: 'row'}} class="centered2">
+        <Container d="flex" flexWrap="wrap" flexDir={{ xs: 'column', lg: 'row'}}>
           {collectiveArray}
         </Container>
       </div>
@@ -166,5 +161,13 @@ const styles = {
     },
     center: {
       justifyContent: "center"
+    },
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)'
     }
 }
