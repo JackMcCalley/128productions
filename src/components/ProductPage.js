@@ -3,9 +3,8 @@ import { useParams } from "react-router-dom";
 import { ShopContext } from './context/shopContext'
 import {  Div, Row, Col, Container, Dropdown, Anchor } from 'atomize'
 import { Card, Button, Form } from 'react-bootstrap'
-
-
-
+import { Carousel } from 'react-responsive-carousel'
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const ProductPage = () => {
     const [quantity, setQuantity] = useState(1)
@@ -51,13 +50,24 @@ const ProductPage = () => {
         >
         {(!variant) ? "Options" : variant.attrs.title.value}
         </Dropdown>
-        
+
+    const carouselImages = product.images.map(function(image, id){
+        console.log(image);
+        return(
+            <div>
+                <img alt='' src={image.src} />
+            </div>
+        )
+    })
+            
 
     return(
         <Container h="100vp">
             <Row>
-                <Col>
-                    <Div bgImg={(!variant) ? product.images[0].src : variant.image.src} bgSize="cover" bgPos="center center" h={{xs: "15rem", md: "30rem"}} w={{xs: "15rem", md: "30rem"}} />
+                <Col justify='center' align='center'>
+                    <Carousel>
+                        {carouselImages}
+                    </Carousel>
                 </Col>
                 <Col>
                     <Card>

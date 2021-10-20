@@ -99,9 +99,9 @@ export default function Collective() {
                   textColor="white"  
                   pos='absolute'
                   d="flex"
-                  p={{x: "3rem", y: '1rem'}}
+                  p={{x: "3rem", y: '.8rem'}}
                   flexWrap='wrap'
-                  transform={{xs: 'translateY(110%)', md: 'translateY(200%)'}}
+                  transform={{xs: 'translateY(125%)', md: 'translateY(210%)'}}
                   bg="#44d9e8"
                   textAlign='center'
                 >
@@ -143,7 +143,7 @@ export default function Collective() {
           contentLabel="More Info"
           ariaHideApp={false}
         >
-          <Text>
+          <Text textAlign='center'>
             {description}
           </Text>
           <Button variant='dark' onClick={closeModal}>
