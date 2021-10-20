@@ -91,14 +91,14 @@ export default function Collective() {
                     src={collective.artistImage.url}
                   />
                   <Text 
-                    textWeight="600" 
-                    textColor="#ec2163"  
+                    textColor="white"  
                     pos='absolute'
-                    textSize="4rem" 
+                    textSize='2rem'
                     d="flex"
-                    p="1rem"
+                    p={{x: "3rem", y: '1rem'}}
                     flexWrap='wrap'
-                    transform={{xs: 'translateY(50%)', md: 'translateY(200%)'}}
+                    transform={{xs: 'translateY(180%)', md: 'translateY(300%)'}}
+                    bg="#ec2163"
                   >
                     {collectiveText}
                   </Text>
@@ -132,7 +132,7 @@ export default function Collective() {
                 height: '1rem',
                 marginLeft: '10%',
                 marginTop: '25%',
-                backgroundColor: 'black'
+                color: 'black'
               }}}
             contentLabel="More Info"
             ariaHideApp={false}
@@ -173,8 +173,8 @@ const styles = {
       left: '50%',
       right: 'auto',
       bottom: 'auto',
+      color: 'black',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      backgroundColor: 'black'
     }
 }

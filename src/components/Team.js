@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { Row, Col, Container, Div, Image, Text } from 'atomize'
+import { Button } from 'react-bootstrap'
+import '../css/collective.css'
+import ReactModal from 'react-modal'
 
 import '../css/collective.css'
 
@@ -9,6 +12,7 @@ const query = `
       items{
         teamName
         teamDescription
+        title
               teamImage {
                 title
                 description
@@ -26,7 +30,12 @@ const query = `
 export default function Collective() {
 
   const [page, setPage] = useState(null);
-  const [isShown, setIsShown] = useState(false)
+  const [modalIsOpen, setIsOpen] = React.useState(false)
+  const [description, setDescription] = useState(null)
+
+  function closeModal(){
+    setIsOpen(false)
+  }
 
   useEffect(() => {
       window
@@ -56,51 +65,54 @@ export default function Collective() {
     }
 
     const teamArray = page.map(function(team, id){
-      let teamText
-
-      if(isShown){
-        teamText = team.teamImage.description
-      } else {
-        teamText = team.teamName
-      }
+      let teamText = team.teamName
+      let teamDescription = team.teamImage.description
+      let teamTitle 
+      console.log(team);
       return(
           <Col size="6" style={{paddingBottom: '30px'}}>
             <Container 
-              flexDir={{xs: 'col', md: 'row'}} 
+              flexDir={{xs: 'col', lg: 'row'}} 
               flexWrap="wrap"
             >
               <Div 
                 bg="black" 
-                w= {{xs: '20rem', md: '30rem'}}
-                h= {{xs: '20rem', md: '30rem'}}
+                w= {{xs: '20rem', lg: '30rem'}}
+                h= {{xs: '20rem', lg: '30rem'}}
                 justify='center' 
                 align='center' 
                 d='flex'
 
               >
-                <Image 
+                <Image
                   pos='static' 
                   top='0' 
                   right='0' 
                   h='auto' 
                   w='auto' 
-                  maxW= {{xs: '20rem', md: '30rem'}}
-                  maxH= {{xs: '20rem', md: '30rem'}}
+                  maxW= {{xs: '20rem', lg: '30rem'}}
+                  maxH= {{xs: '20rem', lg: '30rem'}}
                   alt="artist" 
                   src={team.teamImage.url}
                 />
-                <Text 
-                  textWeight="500" 
-                  textColor="#6bcbd3"  
+                <Text  
+                  textColor="white"  
                   pos='absolute'
-                  textSize="4rem" 
+                  textSize={{xs: '1rem', md: '2rem'}}
                   d="flex"
-                  p="1rem"
+                  p={{x: "3rem", y: '1rem'}}
                   flexWrap='wrap'
-                  transform={{xs: 'translateY(20%)', md: 'translateY(150%)'}}
+                  transform={{xs: 'translateY(180%)', md: 'translateY(180%)'}}
+                  bg="#44d9e8"
+                  justify='center'
                 >
-                  {teamText}
+                  {teamText}<br/>{team.title}
                 </Text>
+              </Div>
+              <Div>
+                <Button variant='dark' onClick={() => {setDescription(teamDescription); setIsOpen(true); console.log(teamDescription);}}>
+                  Read more...
+                </Button>
               </Div>
             </Container>
           </Col>
@@ -108,13 +120,38 @@ export default function Collective() {
     })
 
     return(
-    <div style={{backgroundColor: '#10011d'}}>
+      <div id='main' style={{backgroundColor: '#10011d'}}>
       <Row style={styles.title}>
         <span style={styles.titletext}>TEAM</span>   
       </Row>
       <Container d="flex" flexWrap="wrap" flexDir={{ xs: 'column', lg: 'row'}}>
         {teamArray}
       </Container>
+      <Div>
+        <ReactModal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={{
+            content: styles.content,
+            overlay: {
+              width: '80%',
+              height: '1rem',
+              marginLeft: '10%',
+              marginTop: '25%',
+              backgroundColor: 'white',
+              color: 'black'
+            }}}
+          contentLabel="More Info"
+          ariaHideApp={false}
+        >
+          <Text>
+            {description}
+          </Text>
+          <Button variant='dark' onClick={closeModal}>
+            Close
+          </Button>
+        </ReactModal>
+      </Div>
     </div>
     )
   }
@@ -137,5 +174,15 @@ const styles = {
   },
   center: {
     justifyContent: "center"
+  },
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: 'white',
+
   }
 }
