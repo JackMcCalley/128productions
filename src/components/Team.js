@@ -98,15 +98,14 @@ export default function Collective() {
                 <Text  
                   textColor="white"  
                   pos='absolute'
-                  textSize={{xs: '1rem', md: '2rem'}}
                   d="flex"
                   p={{x: "3rem", y: '1rem'}}
                   flexWrap='wrap'
-                  transform={{xs: 'translateY(180%)', md: 'translateY(180%)'}}
+                  transform={{xs: 'translateY(110%)', md: 'translateY(200%)'}}
                   bg="#44d9e8"
-                  justify='center'
+                  textAlign='center'
                 >
-                  {teamText}<br/>{team.title}
+                  <span><span style={{fontSize: '1.5rem'}}>{teamText}</span><br/><span style={{fontSize: '1rem'}}><i>{team.title}</i></span></span>
                 </Text>
               </Div>
               <Div>
