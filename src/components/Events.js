@@ -109,7 +109,7 @@ const styles = {
         color: '#fff',
     },
     body: {
-        backgroundColor: '#10011d',
+        // backgroundColor: '#10011d',
     },
     title: {
         borderBottom: '5px solid #44d9e8',

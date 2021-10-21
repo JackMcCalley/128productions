@@ -117,7 +117,7 @@ export default function Collective() {
     })
 
     return(
-      <div id='main' style={{backgroundColor: '#10011d'}}>
+      <Div id='main' >
       <Row style={styles.title}>
         <span style={styles.titletext}>TEAM</span>   
       </Row>
@@ -149,13 +149,12 @@ export default function Collective() {
           </Button>
         </ReactModal>
       </Div>
-    </div>
+    </Div>
     )
   }
 
 const styles = {
   title: {
-      backgroundColor: '#10011d',
       fontSize: '64px',
       fontFamily: 'Inherit',
       marginLeft: '20px',

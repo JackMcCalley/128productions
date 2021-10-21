@@ -1,0 +1,6 @@
+.background {
+    background-color: #10011d;
+    opacity: 1;
+    background-size: 24px 24px;
+    background-image:  repeating-linear-gradient(0deg, #44d9e8, #44d9e8 1.2000000000000002px, #10011d 1.2000000000000002px, #10011d);
+}

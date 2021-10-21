@@ -64,12 +64,12 @@ export default function Gallery() {
     })
 
         return(
-        <Div h='110vh' bg="#10011d">
+        <Div style={styles.main} h='110vh'>
             <Row style={styles.title}>
                 <span style={styles.titletext}>GALLERY</span>
             </Row>
             <Container w={{xs: '100%', md: '55%'}} backgroundColor="#10011d">
-                <Carousel style={styles.carousel}>
+                <Carousel autoplay style={styles.carousel}>
                     {galleryArray}
                 </Carousel>
             </Container>
@@ -81,18 +81,20 @@ const styles = {
     title:{
         fontSize: '64px',
         paddingLeft: '20px',
-        backgroundColor: '#10011d',
         color: "white",
     },
     titletext:{
         borderBottom: '5px solid #44d9e8',
         marginBottom: '20px',
-        backgroundColor: "#10011d"
     },
     carousel: {
-        backgroundColor: "#10011d"
     },
     carouselRow: {
-      backgroundColor: "#10011d"
-    }
+    },
+    // main: {
+    //   backgroundColor: '#10011d',
+    //   opacity: '1',
+    //   backgroundSize: '38px 38px',
+    //   backgroundImage:  'repeating-linear-gradient(0deg, #44d9e8, #44d9e8 1.9000000000000001px, #10011d 1.9000000000000001px, #10011d)'
+    // }
 }

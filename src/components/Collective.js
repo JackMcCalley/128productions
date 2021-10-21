@@ -114,7 +114,7 @@ export default function Collective() {
       })    
       
       return(
-      <div id='main' style={{backgroundColor: '#10011d'}}>
+      <div id='main'>
         <Row style={styles.title}>
           <span style={styles.titletext}>COLLECTIVE</span>   
         </Row>
@@ -151,7 +151,6 @@ export default function Collective() {
 
 const styles = {
     title: {
-        backgroundColor: '#10011d',
         fontSize: '64px',
         fontFamily: 'Inherit',
         marginLeft: '20px',

@@ -60,7 +60,7 @@ function App() {
       <StyletronProvider value={engine} debug={debug} debugAfterHydration>
         <div className="App">
           <header className="App-header">
-            <Content style={{height: '100vh', minHeight: '100vh', backgroundColor: 'black'}}/>
+            <Content style={{height: '100vh', minHeight: '100vw'}}/>
           </header>
         </div>
       </StyletronProvider>

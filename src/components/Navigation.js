@@ -12,7 +12,7 @@ import './boot.css'
 const Navigation = () => {
 
     const [width, setWidth] = useState(window.innerWidth)
-    const breakpoint = 1366
+    const breakpoint = 690
 
     useEffect(() => {
         const handleWindowResize = () => setWidth(window.innerWidth)
