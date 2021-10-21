@@ -67,8 +67,6 @@ export default function Collective() {
     const teamArray = page.map(function(team, id){
       let teamText = team.teamName
       let teamDescription = team.teamImage.description
-      let teamTitle 
-      console.log(team);
       return(
           <Col size="6" style={{paddingBottom: '30px'}}>
             <Container 

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import Carousel from 'react-bootstrap/Carousel'
 import { Container, Row, Div } from 'atomize'
+import { Carousel } from 'react-responsive-carousel'
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const query = 
 `
@@ -52,31 +53,26 @@ export default function Gallery() {
 
     const galleryArray = page.map(function(gallery, id){
         return(
-                <Carousel.Item>
+                <div>
                   <img
                     alt="gallery"
-                    className="d-block w-100"
                     src={gallery.image.url}
                   />
-                </Carousel.Item>
+                </div>
                 
         )
     })
 
         return(
-        <Div bg="#10011d">
+        <Div h='110vh' bg="#10011d">
             <Row style={styles.title}>
                 <span style={styles.titletext}>GALLERY</span>
             </Row>
-            <Div backgroundColor="#10011d">
-            <Container w='100%' backgroundColor="#10011d">
-              <Row style={styles.carouselRow}>
-              <Carousel style={styles.carousel}>
-                  {galleryArray}
-              </Carousel>
-              </Row>
+            <Container w={{xs: '100%', md: '55%'}} backgroundColor="#10011d">
+                <Carousel style={styles.carousel}>
+                    {galleryArray}
+                </Carousel>
             </Container>
-            </Div>
         </Div>
         )
 }
