@@ -49,8 +49,8 @@ const Navigation = () => {
                         { width > breakpoint ?
                         <Nav>
                             <Button style={styles.button} bg="outline-light" variant="outline-light" href="https://www.facebook.com/Productions128" target="_blank"><Image src={FB}/></Button>
-                            <Button style={styles.button} bg="outline-light" variant="outline-light" href="https://twitter.com/weare128" target="_blank"><Image src={IG}/></Button>
-                            <Button style={styles.button} bg="outline-light" variant="outline-light" href="https://www.instagram.com/128_productions/" target="_blank"><Image src={TW}/></Button>
+                            <Button style={styles.button} bg="outline-light" variant="outline-light" href="https://twitter.com/weare128" target="_blank"><Image src={TW}/></Button>
+                            <Button style={styles.button} bg="outline-light" variant="outline-light" href="https://www.instagram.com/128_productions/" target="_blank"><Image src={IG}/></Button>
                             <Button style={styles.button} bg="outline-light" variant="outline-light" href="https://www.youtube.com/channel/UCtuwYGxzqkVmJTzFbBPTfug" target="_blank"><Image src={YT}/></Button>
                             <Button style={styles.button} bg="outline-dark" variant="dark" onClick={() => openCart()}>CART</Button>
                         </Nav>
