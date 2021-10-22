@@ -19,7 +19,7 @@ class ShopProvider extends Component {
 
     componentDidMount() {
         //check if localStorage has a checkout_id
-        if (localStorage.checkout_id) {
+        if (sessionStorage.checkout_id) {
             this.fetchCheckout(localStorage.checkout_id)
         } else {
             this.createCheckout()
@@ -29,7 +29,7 @@ class ShopProvider extends Component {
 
     createCheckout = async () => {
         const checkout = await client.checkout.create()
-        localStorage.setItem("checkout_id", checkout.id)
+        sessionStorage.setItem("checkout_id", checkout.id)
         await this.setState({ checkout: checkout })
     }
 
