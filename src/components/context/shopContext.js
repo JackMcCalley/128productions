@@ -8,10 +8,10 @@ const client = Client.buildClient({
 })
 
 class ShopProvider extends Component {
-
     state = {
         products: [],
         product: {},
+        collections: [],
         checkout: {},
         isCartOpen: false,
         test: 'test'
@@ -19,7 +19,6 @@ class ShopProvider extends Component {
 
     componentDidMount() {
         //check if localStorage has a checkout_id
-        this.createCheckout()
         if (localStorage.checkout_id) {
             this.fetchCheckout(localStorage.checkout_id)
         } else {
@@ -63,6 +62,12 @@ class ShopProvider extends Component {
         client.product.fetchAll().then((products) => {
             this.setState({products: products})
         })
+    }
+
+    fetchAllCollections = async () => {
+        client.collection.fetchAllWithProducts().then((collections) => {
+            this.setState({collections: collections})
+          });
     }
 
     fetchProductWithId = async (id) => {
