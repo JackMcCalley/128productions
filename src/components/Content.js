@@ -13,6 +13,7 @@ import Team from './Team.js'
 import '../css/background.css'
 
 const Content = () => (
+    <div>
     <div class='background'>
         <Router>
             <Navigation />
@@ -28,7 +29,11 @@ const Content = () => (
                 <Route exact path='/team' component={Team} />
             </Switch>
         </Router>
+        
+    </div>
+    <div>
         <Footer />
+    </div>
     </div>
 )
 
