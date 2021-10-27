@@ -48,13 +48,13 @@ export default function Home() {
       return "Loading...";
     }
         return(
-            <Div w="100%" h='100vp'>
+            <div class="background" style={{paddingTop: '2rem', paddingBottom: '2rem'}}>
                 <Div w={{md: '70%'}} m={{l: {xs: '0%', md: '15%' }}} justify='center'>
                   <YoutubeEmbed style={styles.youtube} embedId={page.url} /> 
                 </Div>
                 <Row style={styles.center}>
                 </Row>
-            </Div>
+            </div>
         )
 }
 

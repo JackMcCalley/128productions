@@ -3,6 +3,7 @@ import {Row, Col, Div, Container} from 'atomize'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import "react-simple-flex-grid/lib/main.css";
+import '../css/background.css'
 
 const query = `
 {
@@ -90,6 +91,7 @@ export default function Events() {
       })
 
         return(
+          <div class='background'>
             <Div h="100%" w="100%" justify="space-around" style={styles.body}>
                 <Row justify='space-between' style={styles.main}>
                     <span style={styles.title}>EVENTS</span>
@@ -98,13 +100,14 @@ export default function Events() {
                   {eventArray}
                 </Container>
             </Div>
+          </div>
         )
     }
 
 const styles = {
     main: {
-        fontSize: '64px',
-        marginLeft: '20px',
+        fontSize: '48px',
+        marginLeft: '12rem',
         marginBottom: '20px',
         color: '#fff',
     },

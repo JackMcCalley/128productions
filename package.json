@@ -30,7 +30,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "dev": "react-scripts start",
+    "dev": "react-scripts start NODE_OTIONS=--openssl-legacy-provider",
     "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",

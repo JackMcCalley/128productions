@@ -3,6 +3,7 @@ import { Row, Col, Container, Div, Image, Text } from 'atomize'
 import { Button } from 'react-bootstrap'
 import '../css/collective.css'
 import ReactModal from 'react-modal'
+import '../css/background.css'
 
 const query = `
 {
@@ -114,7 +115,7 @@ export default function Collective() {
       })    
       
       return(
-      <div id='main'>
+      <div class='background' id='main'>
         <Row style={styles.title}>
           <span style={styles.titletext}>COLLECTIVE</span>   
         </Row>
@@ -151,9 +152,9 @@ export default function Collective() {
 
 const styles = {
     title: {
-        fontSize: '64px',
+        fontSize: '48px',
         fontFamily: 'Inherit',
-        marginLeft: '20px',
+        marginLeft: '12rem',
         color: 'white'
     },
     pics: {

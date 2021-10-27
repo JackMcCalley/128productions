@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Container, Row, Div } from 'atomize'
 import { Carousel } from 'react-responsive-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import '../css/background.css'
 
 const query = 
 `
@@ -64,7 +65,7 @@ export default function Gallery() {
     })
 
         return(
-        <Div style={styles.main} h='110vh'>
+        <div class='background' style={styles.main}>
             <Row style={styles.title}>
                 <span style={styles.titletext}>GALLERY</span>
             </Row>
@@ -73,14 +74,14 @@ export default function Gallery() {
                     {galleryArray}
                 </Carousel>
             </Container>
-        </Div>
+        </div>
         )
 }
 
 const styles = {
     title:{
-        fontSize: '64px',
-        paddingLeft: '20px',
+        fontSize: '48px',
+        paddingLeft: '12rem',
         color: "white",
     },
     titletext:{

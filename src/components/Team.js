@@ -3,6 +3,7 @@ import { Row, Col, Container, Div, Image, Text } from 'atomize'
 import { Button } from 'react-bootstrap'
 import '../css/collective.css'
 import ReactModal from 'react-modal'
+import '../css/background.css'
 
 import '../css/collective.css'
 
@@ -117,7 +118,7 @@ export default function Collective() {
     })
 
     return(
-      <Div id='main' >
+      <div class='background' id='main' >
       <Row style={styles.title}>
         <span style={styles.titletext}>TEAM</span>   
       </Row>
@@ -149,15 +150,15 @@ export default function Collective() {
           </Button>
         </ReactModal>
       </Div>
-    </Div>
+    </div>
     )
   }
 
 const styles = {
   title: {
-      fontSize: '64px',
+      fontSize: '48px',
       fontFamily: 'Inherit',
-      marginLeft: '20px',
+      marginLeft: '12rem',
       color: 'white'
   },
   pics: {

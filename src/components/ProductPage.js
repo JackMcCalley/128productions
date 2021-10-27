@@ -70,7 +70,7 @@ const ProductPage = () => {
                     </Carousel>
                 </Col>
                 <Col>
-                    <Card>
+                    <Card style={{marginTop: "1rem"}}>
                         <Card.Body>
                         <Card.Title>
                             {product.title}
