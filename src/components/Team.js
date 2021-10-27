@@ -155,7 +155,7 @@ const styles = {
   title: {
       fontSize: '48px',
       fontFamily: 'Inherit',
-      marginLeft: '12rem',
+      marginLeft: '20px',
       color: 'white'
   },
   pics: {

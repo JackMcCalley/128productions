@@ -64,11 +64,10 @@ export default function Events() {
         title = title + "               "
       }
 
-        return(
-        <Col size="4" style={{marginBottom: '30px', alignItems: 'space-around'}} h="auto">
-          <Card style={{alignItems: 'stretch'}}>
+        return(  
+        <Col size="4" style={{marginBottom: '30px'}} h="auto">
+          <Card bg='black' border='light' style={{width: '21rem', alignItems: 'stretch'}}>
             <Div 
-              bg="black" 
               w= {{xs: '15rem', md: '20rem'}}
               h= {{xs: '15rem', md: '20rem'}}
               justify='center' 
@@ -77,24 +76,30 @@ export default function Events() {
             >
             <Card.Img key={id} variant="top" src={event.image.url} />
             </Div>
-            <Card.Body style={{width: "20rem", height: '15rem'}}>
+            <Card.Body style={{width: '20rem', height: '15rem'}}>
               <Card.Title key={id} style={{fontSize: "2rem"}} >{title}</Card.Title>
               <Card.Text  key={id}>{event.cardText}</Card.Text>
               <Card.Text key={id}>{event.date}</Card.Text>
               <Card.Text key={id}>{event.location}</Card.Text>
             </Card.Body>
-            <Button key={id} href={event.ticketLink} style={styles.button} bg="outline-light" variant="outline-light">TICKETS</Button>
+            <Button key={id} href={event.ticketLink} style={styles.button} bg="light" variant="light">TICKETS</Button>
           </Card>
         </Col>
         )
       })
 
         return(
-            <Div h="100%" w="100%" justify="space-around" style={styles.body}>
-                <Row justify='space-around' style={styles.main}>
+            <Div h="100%" w="100vp" style={styles.body}>
+                <Row style={styles.main}>
                     <span style={styles.title}>EVENTS</span>
                 </Row>
-                <Container d="flex" flexWrap="wrap" flexDir={{ xs: 'column', lg: 'row'}} maxH={{ xs: 'auto', md: '100vp'}}>
+                <Container 
+                  justify='space-between' 
+                  d="flex" 
+                  flexWrap="wrap" 
+                  flexDir={{ xs: 'column', lg: 'row'}} 
+                  maxH={{ xs: 'auto', md: '100vp'}}
+                >
                   {eventArray}
                 </Container>
             </Div>
@@ -104,12 +109,9 @@ export default function Events() {
 const styles = {
     main: {
         fontSize: '48px',
-        marginLeft: '12rem',
+        marginLeft: '20px',
         marginBottom: '20px',
         color: '#fff',
-    },
-    body: {
-        // backgroundColor: '#10011d',
     },
     title: {
         borderBottom: '5px solid #44d9e8',

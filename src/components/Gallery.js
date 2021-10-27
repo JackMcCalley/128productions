@@ -80,7 +80,7 @@ export default function Gallery() {
 const styles = {
     title:{
         fontSize: '48px',
-        paddingLeft: '12rem',
+        paddingLeft: '20px',
         color: "white",
     },
     titletext:{
