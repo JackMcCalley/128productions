@@ -15,7 +15,14 @@ import backgroundimg from '../css/backgroundimg.svg'
 
 const Content = () => (
     <div>
-    <div style={{backgroundImage: `url(${backgroundimg})`}}>
+    <div style={{
+            backgroundImage: `url(${backgroundimg})`, 
+            backgroundPosition: 'center', 
+            backgroundSize: 'cover', 
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed', 
+            width: '100vw'
+        }}>
         <Router>
             <Navigation />
             <Cart />
