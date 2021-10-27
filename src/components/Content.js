@@ -10,11 +10,12 @@ import Footer from './Footer.js'
 import Cart from './shopify/Cart.js';
 import ProductPage from './ProductPage.js';
 import Team from './Team.js'
-import '../css/background.css'
+import backgroundimg from '../css/backgroundimg.svg'
+
 
 const Content = () => (
     <div>
-    <div class='background'>
+    <div style={{backgroundImage: `url(${backgroundimg})`}}>
         <Router>
             <Navigation />
             <Cart />
