@@ -10,9 +10,10 @@ import Footer from './Footer.js'
 import Cart from './shopify/Cart.js';
 import ProductPage from './ProductPage.js';
 import Team from './Team.js'
+import '../css/background.css'
 
 const Content = () => (
-    <div style={{backgroundcolor: "#10011d"}}>
+    <div class='background'>
         <Router>
             <Navigation />
             <Cart />

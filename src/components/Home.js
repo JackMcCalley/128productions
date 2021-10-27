@@ -3,7 +3,6 @@ import {Row} from 'simple-flexbox'
 import YoutubeEmbed from './YoutubeEmbed.js'
 import "../css/youtubeEmbed.css"
 import { Div } from 'atomize'
-import '../css/background.css'
 
 const query = 
 `
@@ -48,7 +47,7 @@ export default function Home() {
       return "Loading...";
     }
         return(
-            <div class="background" style={{paddingTop: '2rem', paddingBottom: '2rem'}}>
+            <div style={{paddingTop: '2rem', paddingBottom: '2rem'}}>
                 <Div w={{md: '70%'}} m={{l: {xs: '0%', md: '15%' }}} justify='center'>
                   <YoutubeEmbed style={styles.youtube} embedId={page.url} /> 
                 </Div>

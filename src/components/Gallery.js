@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import { Container, Row, Div } from 'atomize'
 import { Carousel } from 'react-responsive-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import '../css/background.css'
 
 const query = 
 `
@@ -65,7 +64,7 @@ export default function Gallery() {
     })
 
         return(
-        <div class='background' style={styles.main}>
+        <div style={styles.main}>
             <Row style={styles.title}>
                 <span style={styles.titletext}>GALLERY</span>
             </Row>
@@ -91,11 +90,5 @@ const styles = {
     carousel: {
     },
     carouselRow: {
-    },
-    // main: {
-    //   backgroundColor: '#10011d',
-    //   opacity: '1',
-    //   backgroundSize: '38px 38px',
-    //   backgroundImage:  'repeating-linear-gradient(0deg, #44d9e8, #44d9e8 1.9000000000000001px, #10011d 1.9000000000000001px, #10011d)'
-    // }
+    }
 }
