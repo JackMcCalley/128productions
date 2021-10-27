@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Row, Col, Container, Div, Image, Text } from 'atomize'
-import { Button } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 import '../css/collective.css'
 import ReactModal from 'react-modal'
 
@@ -67,6 +67,7 @@ export default function Collective() {
         
         return(
             <Col key={id} size="6" style={{paddingBottom: '30px'}}>
+              <Card border='secondary' bg='black'>
               <Container 
                 flexDir={{xs: 'col', md: 'row'}} 
                 flexWrap="wrap"
@@ -104,11 +105,12 @@ export default function Collective() {
                   </Text>
                 </Div>
                 <Div>
-                <Button variant='dark' onClick={() => {setDescription(collectiveDescription); setIsOpen(true); console.log(collectiveDescription);}}>
+                <Button variant='light' onClick={() => {setDescription(collectiveDescription); setIsOpen(true); console.log(collectiveDescription);}}>
                   Read more...
                 </Button>
                 </Div>
               </Container>
+              </Card>
             </Col>
           )
       })    
