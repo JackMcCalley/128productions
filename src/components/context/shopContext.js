@@ -49,13 +49,16 @@ class ShopProvider extends Component {
         this.setState({ checkout: checkout })
     }
 
-    removeItemFromCheckout = async (variantId, quantity) => {
-        const lineItemsToRemove= [{
-            variantId
-        }]
+    removeItemFromCheckout = async (variantId) => {
+        let checkoutId = this.state.checkout.id
+        console.log(variantId);
+        const lineItemsToRemove = [
+            `${variantId}`
+        ]
 
-        const checkout = await client.checkout.removeLineItems(this.state.checkoutId, lineItemsToRemove)
+        const checkout = await client.checkout.removeLineItems(checkoutId, lineItemsToRemove)
         this.setState({ checkout: checkout })
+        
     }
 
     fetchAllProducts = async () => {
@@ -89,7 +92,9 @@ class ShopProvider extends Component {
                 fetchProductWithId: this.fetchProductWithId,
                 closeCart: this.closeCart,
                 openCart: this.openCart,
-                addItemToCheckout: this.addItemToCheckout
+                addItemToCheckout: this.addItemToCheckout,
+                removeItemFromCheckout: this.removeItemFromCheckout,
+                fetchAllCollections: this.fetchAllCollections
             }} >
                 {this.props.children}
             </ShopContext.Provider>

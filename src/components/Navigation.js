@@ -23,7 +23,13 @@ const Navigation = () => {
     const { openCart } = useContext(ShopContext)
         return(
                 <Div style={{backgroundColor: '#10011d', fontSize: '2rem'}}>
-                    <Navbar bsclass="custom-class" style={{width:'100%', justifyContent: 'space-around', marginRight: '10%', backgroundColor: '#10011d'}} bg="dark" variant="dark">
+                    <Navbar 
+                        bsclass="custom-class" 
+                        style={{width:'100%', 
+                        justifyContent: 'space-around', 
+                        backgroundColor: '#10011d'}} 
+                        bg="dark" 
+                        variant="dark">
                     <Navbar.Brand href="/"><Image src={Logo128} /></Navbar.Brand>
                     { width < breakpoint ?
                         <Nav>         

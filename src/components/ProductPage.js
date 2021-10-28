@@ -34,7 +34,7 @@ const ProductPage = () => {
     const variantList = (
         <Div>
             {product.variants.map((variant, index) => (
-                <Anchor onClick={()=>handleSelect(variant)} key={index} d='block' p={{ y: "0.25rem" }}>
+                <Anchor key={index + 'key'} onClick={()=>handleSelect(variant)} key={index} d='block' p={{ y: "0.25rem" }}>
                     {variant.attrs.title.value}
                 </Anchor>
             ))}
@@ -52,9 +52,8 @@ const ProductPage = () => {
         </Dropdown>
 
     const carouselImages = product.images.map(function(image, id){
-        console.log(image);
         return(
-            <div>
+            <div key={id + '__img_id'}>
                 <img alt='' src={image.src} />
             </div>
         )

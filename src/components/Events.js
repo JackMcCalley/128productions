@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Row, Col, Div, Container} from 'atomize'
+import {Row, Col, Div, Collapse} from 'atomize'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import "react-simple-flex-grid/lib/main.css";
@@ -22,6 +22,8 @@ const query = `
 export default function Events() {
 
     const [page, setPage] = useState(null);
+    //show past event button handler
+    const [show, setShow] = useState(false);
 
     //Contentful query
     useEffect(() => {
@@ -50,58 +52,113 @@ export default function Events() {
           setPage(data.eventCollection.items)
         })
     }, []);
-  
+
     //loading page
     if (!page) {
       return "Loading...";
     }
 
+    //displays future events
     const eventArray = page.map(function(event, id){
       let title = event.title
+      let eventDate = new Date(event.date)
+      let today = new Date();
       if (title.length > 50){
         title = title.substring(0,30) + "..."
       } else if (title.length < 15){
         title = title + "               "
       }
-
+      if (today < eventDate){
         return(  
-        <Col size="4" style={{marginBottom: '30px'}} h="auto">
-          <Card bg='black' border='light' style={{width: '21rem', alignItems: 'stretch'}}>
-            <Div 
-              w= {{xs: '15rem', md: '20rem'}}
-              h= {{xs: '15rem', md: '20rem'}}
-              justify='center' 
-              align='center' 
-              d='flex'
-            >
-            <Card.Img key={id} variant="top" src={event.image.url} />
-            </Div>
-            <Card.Body style={{width: '20rem', height: '15rem'}}>
-              <Card.Title key={id} style={{fontSize: "2rem"}} >{title}</Card.Title>
-              <Card.Text  key={id}>{event.cardText}</Card.Text>
-              <Card.Text key={id}>{event.date}</Card.Text>
-              <Card.Text key={id}>{event.location}</Card.Text>
-            </Card.Body>
-            <Button key={id} href={event.ticketLink} style={styles.button} bg="light" variant="light">TICKETS</Button>
-          </Card>
-        </Col>
+          <Col size="4" style={{marginBottom: '30px'}} h="auto">
+            <Card bg='black' border='light' style={{width: '21rem', alignItems: 'stretch'}}>
+              <Div 
+                w= {{xs: '15rem', md: '20rem'}}
+                h= {{xs: '15rem', md: '20rem'}}
+                justify='center' 
+                align='center' 
+                d='flex'
+              >
+              <Card.Img variant="top" src={event.image.url} />
+              </Div>
+              <Card.Body style={{width: '20rem', height: '15rem'}}>
+                <Card.Title style={{fontSize: "2rem"}} >{title}</Card.Title>
+                <Card.Text>{event.cardText}</Card.Text>
+                <Card.Text>{event.date}</Card.Text>
+                <Card.Text>{event.location}</Card.Text>
+              </Card.Body>
+              <Button href={event.ticketLink} style={styles.button} bg="light" variant="light">TICKETS</Button>
+            </Card>
+          </Col>
+          )
+      } else return <div></div>
+
+        
+    })
+
+    //displays past events
+    const pastEvents = page.map(function(event, id){
+      let title = event.title
+      let eventDate = new Date(event.date)
+      let today = new Date();
+      if (title.length > 50) {
+        title = title.substring(0,30) + "..."
+      } else if (title.length < 15){
+        title = title + "               "
+      }
+      if (today > eventDate){
+        return(
+          <Col size="4" style={{marginBottom: '30px'}} h="auto">
+            <Card bg='black' border='light' style={{width: '21rem', alignItems: 'stretch'}}>
+              <Div 
+                w= {{xs: '15rem', md: '20rem'}}
+                h= {{xs: '15rem', md: '20rem'}}
+                justify='center' 
+                align='center' 
+                d='flex'
+              >
+              <Card.Img variant="top" src={event.image.url} />
+              </Div>
+              <Card.Body style={{width: '20rem', height: '15rem'}}>
+                <Card.Title style={{fontSize: "2rem"}} >{title}</Card.Title>
+                <Card.Text>{event.cardText}</Card.Text>
+                <Card.Text>{event.date}</Card.Text>
+                <Card.Text>{event.location}</Card.Text>
+              </Card.Body>
+              <Button href={event.ticketLink} style={styles.button} bg="light" variant="light">TICKETS</Button>
+            </Card>
+          </Col>
         )
-      })
+      } else return <div></div>
+    })
+
+    const pastClick = () => {
+      setShow(!show)
+    }
 
         return(
             <Div h="100%" w="100vp" style={styles.body}>
                 <Row style={styles.main}>
                     <span style={styles.title}>EVENTS</span>
                 </Row>
-                <Container 
+                <Row 
                   justify='space-between' 
                   d="flex" 
-                  flexWrap="wrap" 
+                  flexWRap="wrap" 
                   flexDir={{ xs: 'column', lg: 'row'}} 
                   maxH={{ xs: 'auto', md: '100vp'}}
+                  style={{marginLeft: '8%'}}
                 >
                   {eventArray}
-                </Container>
+                </Row>
+                    <Row w='100vw' justify='center'>
+                    <Button onClick={pastClick} size='lg' variant='light' style={{fontSize: '36px', width: '50%', height: '5rem', marginBottom: '1rem'}}>Past Events</Button>
+                    </Row>
+                    <Collapse isOpen={show}>
+                      <Row style={{marginLeft: '8%'}} h='100%'>
+                        {pastEvents}
+                      </Row>
+                    </Collapse>
             </Div>
         )
     }
@@ -109,12 +166,13 @@ export default function Events() {
 const styles = {
     main: {
         fontSize: '48px',
-        marginLeft: '20px',
         marginBottom: '20px',
         color: '#fff',
+        justifyContent: 'center'
     },
     title: {
         borderBottom: '5px solid #44d9e8',
+        justifyContent: 'center'
     },
     button: {
         width: '15rem',

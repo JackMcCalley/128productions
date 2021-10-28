@@ -5,7 +5,16 @@ import { Button } from 'react-bootstrap'
 
 const Cart = () => {
 
-    const { isCartOpen, closeCart, checkout } = useContext(ShopContext)
+    const { isCartOpen, closeCart, checkout, removeItemFromCheckout } = useContext(ShopContext)
+
+    const removeItem = (item) => {
+        console.log(item.id);
+        removeItemFromCheckout(item.id).then(response => {
+            console.log(response);
+        }).catch(e => {
+            console.log(e);
+        })
+    }
 
     return (
         <SideDrawer isOpen={isCartOpen} onClose={closeCart}>
@@ -21,16 +30,29 @@ const Cart = () => {
                             <Div bgImg={item.variant.image.src} bgSize="cover" bgPos="center center" h="10rem" w="10rem"/>
                         </Col>
                         <Col>
+                        <Row>
                             <Text>{item.title}</Text>
+                        </Row>
+                        <Row>
                             <Text>{item.variant.title}</Text>
-                            <Text>Quantity: {item.quantity}</Text>
-                        </Col>
-                        <Col>
+                        </Row>
+                        <Row>
                             <Text>${item.variant.price * item.quantity}</Text>
+                        </Row>
+                            <Row>
+                                <Text>Quantity: {item.quantity}</Text>
+                                <Button 
+                                    onClick={() => {removeItem(item)}} 
+                                    size='sm' 
+                                    variant='secondary'
+                                    style={{marginLeft: '5px'}}
+                                >
+                                        X
+                                </Button>
+                            </Row>
                         </Col>
                     </Row>
                 ))}
-                {/* <Button style={{marginTop: '2rem'}} variant='dark' color="black" onClick={createCheckout}>Clear Shopping Cart</Button> */}
                 <Anchor 
                     p="1rem" 
                     m="1rem" 

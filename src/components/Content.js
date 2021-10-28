@@ -21,7 +21,6 @@ const Content = () => (
             backgroundSize: 'cover', 
             backgroundRepeat: 'no-repeat',
             backgroundAttachment: 'fixed', 
-            width: '100vw'
         }}>
         <Router>
             <Navigation />

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Container, Row, Div } from 'atomize'
+import { Container, Row } from 'atomize'
 import { Carousel } from 'react-responsive-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -80,15 +80,11 @@ export default function Gallery() {
 const styles = {
     title:{
         fontSize: '48px',
-        paddingLeft: '20px',
         color: "white",
+        justifyContent: 'center'
     },
     titletext:{
         borderBottom: '5px solid #44d9e8',
         marginBottom: '20px',
-    },
-    carousel: {
-    },
-    carouselRow: {
     }
 }

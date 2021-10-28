@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { ShopContext } from './context/shopContext'
 import { Container, Div, Row, Col } from 'atomize'
 import { Link } from 'react-router-dom'
@@ -8,8 +8,7 @@ import { Card } from 'react-bootstrap'
 
 const Merch = () => {
 
-    const { fetchAllProducts, products, fetchAllCollections, collections } = useContext(ShopContext)
-    const { collection, setCollection } = useState([])
+    const { fetchAllProducts, products } = useContext(ShopContext)
 
     useEffect(() => {
         fetchAllProducts()
@@ -17,11 +16,6 @@ const Merch = () => {
         }
     }, [fetchAllProducts])
 
-
-
-    if(!products) return <div>Loading...</div>
-
-    console.log(products);
     return(
         <div style={{paddingTop: '2rem'}}>
         <Container>

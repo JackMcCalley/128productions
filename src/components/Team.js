@@ -157,8 +157,8 @@ const styles = {
   title: {
       fontSize: '48px',
       fontFamily: 'Inherit',
-      marginLeft: '20px',
-      color: 'white'
+      color: 'white',
+      justifyContent: 'center'
   },
   pics: {
       width: '100%',

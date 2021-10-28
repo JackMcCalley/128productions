@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Content from './Content.js'
 import 'bootswatch/dist/vapor/bootstrap.min.css';
 import { Provider as StyletronProvider, DebugEngine } from "styletron-react"
