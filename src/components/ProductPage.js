@@ -60,25 +60,26 @@ const ProductPage = () => {
     })
             
 
+    console.log(product.description);
     return(
         <Container h="100vp">
             <Row>
-                <Col justify='center' align='center'>
+                <Col justify='center' align='center' style={{marginTop: '1rem'}}>
                     <Carousel>
                         {carouselImages}
                     </Carousel>
                 </Col>
                 <Col>
-                    <Card style={{marginTop: "1rem"}}>
+                    <Card style={{marginTop: "1rem"}} bg='white'>
                         <Card.Body>
-                        <Card.Title>
+                        <Card.Title style={{color: 'black'}}>
                             {product.title}
                         </Card.Title>
-                        <Card.Text>
+                        <Card.Text style={{color: 'black'}}>
                             ${product.variants[0].price * quantity}
                         </Card.Text>
-                        <Form width="10rem">
-                            <Form.Label>Quantity</Form.Label>
+                        <Form width="10rem" style={{color: 'black'}}>
+                            <Form.Label style={{color: 'black'}}>Quantity</Form.Label>
                             <Form.Control 
                                 style={{width: "10rem"}} 
                                 type='number' 
@@ -90,6 +91,13 @@ const ProductPage = () => {
                             />
                         </Form>
                         {variantDropdown}
+                        <Card.Text style={{
+                            marginTop: '1rem',
+                            fontSize: '20px',
+                            color: 'black'
+                        }}>
+                            {product.description}
+                        </Card.Text>
                         <Button variant="dark" onClick={() => {
                             addItemToCheckout(variant.attrs.id.value, quantity)
                             openCart()

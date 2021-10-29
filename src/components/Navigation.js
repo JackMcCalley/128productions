@@ -12,7 +12,7 @@ import './boot.css'
 const Navigation = () => {
 
     const [width, setWidth] = useState(window.innerWidth)
-    const breakpoint = 690
+    const breakpoint = 820
 
     useEffect(() => {
         const handleWindowResize = () => setWidth(window.innerWidth)
@@ -30,7 +30,7 @@ const Navigation = () => {
                         backgroundColor: '#10011d'}} 
                         bg="dark" 
                         variant="dark">
-                    <Navbar.Brand href="/"><Image src={Logo128} /></Navbar.Brand>
+                    <Navbar.Brand href="/"><Image style={{width: '90%'}} src={Logo128} /></Navbar.Brand>
                     { width < breakpoint ?
                         <Nav>         
                             <NavDropdown title="MENU">
