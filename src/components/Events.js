@@ -137,14 +137,14 @@ export default function Events() {
     }
 
         return(
-            <Div h="100%" w="100vp" style={styles.body}>
+            <Div h="100%" w="100vp">
                 <Row style={styles.main}>
                     <span style={styles.title}>EVENTS</span>
                 </Row>
                 <Row 
                   justify='space-between' 
                   d="flex" 
-                  flexWRap="wrap" 
+                  flexWrap="wrap" 
                   flexDir={{ xs: 'column', lg: 'row'}} 
                   maxH={{ xs: 'auto', md: '100vp'}}
                   style={{marginLeft: '8%'}}
