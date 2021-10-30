@@ -63,12 +63,13 @@ export default function Events() {
       let title = event.title
       let eventDate = new Date(event.date)
       let today = new Date();
+      today = today.setDate(today.getDate() + 2)
       if (title.length > 50){
         title = title.substring(0,30) + "..."
       } else if (title.length < 15){
         title = title + "               "
       }
-      if (today < eventDate){
+      // if (today < eventDate){
         return(  
           <Col size="4" style={{marginBottom: '30px'}} h="auto">
             <Card bg='black' border='light' style={{width: '21rem', alignItems: 'stretch'}}>
@@ -91,7 +92,7 @@ export default function Events() {
             </Card>
           </Col>
           )
-      } else return <div></div>
+      // } else return <div></div>
 
         
     })
@@ -101,11 +102,13 @@ export default function Events() {
       let title = event.title
       let eventDate = new Date(event.date)
       let today = new Date();
+      today.setDate(today.getDate() + 2)
       if (title.length > 50) {
         title = title.substring(0,30) + "..."
       } else if (title.length < 15){
         title = title + "               "
       }
+      console.log(today);
       if (today > eventDate){
         return(
           <Col size="4" style={{marginBottom: '30px'}} h="auto">
@@ -151,14 +154,14 @@ export default function Events() {
                 >
                   {eventArray}
                 </Row>
-                    <Row w='100vw' justify='center'>
+                    {/* <Row w='100vw' justify='center'>
                     <Button onClick={pastClick} size='lg' variant='light' style={{fontSize: '36px', width: '50%', height: '5rem', marginBottom: '1rem'}}>Past Events</Button>
                     </Row>
                     <Collapse isOpen={show}>
                       <Row style={{marginLeft: '8%'}} h='100%'>
                         {pastEvents}
                       </Row>
-                    </Collapse>
+                    </Collapse> */}
             </Div>
         )
     }

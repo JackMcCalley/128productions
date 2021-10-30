@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { ShopContext } from './context/shopContext'
-import { Container, Div, Row, Col } from 'atomize'
+import { Div, Row, Col } from 'atomize'
 import { Link } from 'react-router-dom'
-import { Card, Nav, Tab, Tabs } from 'react-bootstrap'
-
-
+import { Card, Nav, Tab } from 'react-bootstrap'
 
 const Merch = () => {
 
