@@ -107,7 +107,7 @@ export default function Collective() {
               </Div>
               <Div>
                 <Button variant='light' onClick={() => {setDescription(teamDescription); setIsOpen(true); console.log(teamDescription);}}>
-                  Read more...
+                <i><u>Read more...</u></i>
                 </Button>
               </Div>
             </Container>

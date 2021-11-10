@@ -93,7 +93,7 @@ const ProductPage = () => {
                         {variantDropdown}
                         <Card.Text style={{
                             marginTop: '1rem',
-                            fontSize: '20px',
+                            fontSize: '16px',
                             color: 'black'
                         }}>
                             {product.description}

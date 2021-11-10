@@ -25,7 +25,7 @@ const Navigation = () => {
                 <Div style={{backgroundColor: '#10011d', fontSize: '2rem'}}>
                     <Navbar 
                         bsclass="custom-class" 
-                        style={{width:'100%', 
+                        style={{
                         justifyContent: 'space-around', 
                         backgroundColor: '#10011d'}} 
                         bg="dark" 

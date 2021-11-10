@@ -26,6 +26,8 @@ const Merch = () => {
                         bgImg={product.images[0].src}
                         bgSize="cover"
                         bgPos="center center"
+                        d='flex'
+                        justify='center'
                     />
                     <Card.Body variant='dark' style={{height: '10rem', marginBottom: '1rem'}}>
                         <Card.Title style={{color: 'black'}} variant='dark'>{product.title}</Card.Title>
@@ -167,29 +169,33 @@ const Merch = () => {
     }
 
     return(
-        <Row style={{paddingTop: '2rem'}}>
-            <Tab.Container id='left-tabs-example' defaultActiveKey='all'>
+        <div>
+        <Row style={styles.main}>
+            <span style={styles.title}>MERCHANDISE</span>
+        </Row>
+        <Row style={{paddingTop: '2rem', marginLeft: '10px', marginRight: '10px'}}>
+            <Tab.Container id='left-tabs-example' defaultActiveKey='all' >
             <Col size={{sm: '12', md:'2', lg: '2'}}>
                 <Row>
                     <Col h="100vw">
-                        <Nav variant="tabs" className="flex-column">
+                        <Nav style={{backgroundColor: '#170229'}} variant="tabs" className="flex-column">
                             <Nav.Item>
-                                <Nav.Link eventKey='all'>All Products</Nav.Link>
+                                <Nav.Link eventKey='all' style={{color: 'white'}}>All Products</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey='headware'>Headware</Nav.Link>
+                                <Nav.Link eventKey='headware' style={{color: 'white'}}>Headware</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey='homeliving'>Home Living</Nav.Link>
+                                <Nav.Link eventKey='homeliving' style={{color: 'white'}}>Home Living</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey='jacketshoodies'>Jackets and Hoodies</Nav.Link>
+                                <Nav.Link eventKey='jacketshoodies' style={{color: 'white'}}>Jackets and Hoodies</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey='shirts'>Shirts</Nav.Link>
+                                <Nav.Link eventKey='shirts' style={{color: 'white'}}>Shirts</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey='women'>Women's</Nav.Link>
+                                <Nav.Link eventKey='women' style={{color: 'white'}}>Women's</Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Col>
@@ -261,7 +267,25 @@ const Merch = () => {
             </Col>
             </Tab.Container>
         </Row>
+        </div>
     )
+}
+
+const styles = {
+    main: {
+        fontSize: '48px',
+        marginBottom: '20px',
+        color: '#fff',
+        justifyContent: 'center'
+    },
+    title: {
+        borderBottom: '5px solid #44d9e8',
+        justifyContent: 'center'
+    },
+    button: {
+        width: '15rem',
+        // marginLeft: '25%'
+    }
 }
 
 export default Merch;

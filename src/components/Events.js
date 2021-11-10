@@ -90,7 +90,7 @@ export default function Events() {
                 <Card.Text>{event.date}</Card.Text>
                 <Card.Text>{event.location}</Card.Text>
               </Card.Body>
-              <Button href={event.ticketLink} style={styles.button} bg="light" variant="light">TICKETS</Button>
+              <Button href={event.ticketLink} style={styles.button} bg="light" variant="light"><i><u>TICKETS</u></i></Button>
             </Card>
           </Col>
           )
@@ -110,6 +110,7 @@ export default function Events() {
       if (today > eventDate){
         return(
           <Col size="4" style={{marginBottom: '30px'}} h="auto">
+            <Div justify='center'>
             <Card bg='black' border='light' style={{width: '21rem', alignItems: 'stretch'}}>
               <Div 
                 w= {{xs: '15rem', md: '20rem'}}
@@ -126,8 +127,8 @@ export default function Events() {
                 <Card.Text>{event.date}</Card.Text>
                 <Card.Text>{event.location}</Card.Text>
               </Card.Body>
-              <Button href={event.ticketLink} style={styles.button} bg="light" variant="light">TICKETS</Button>
             </Card>
+            </Div>
           </Col>
         )
       } else return <div></div>
@@ -153,7 +154,7 @@ export default function Events() {
                   {eventArray}
                 </Row>
                 <Row w='100vw' justify='center'>
-                  <Button onClick={pastClick} size='lg' variant='light' style={{fontSize: '36px', width: '50%', height: '5rem', marginBottom: '1rem'}}>Past Events</Button>
+                  <Button onClick={pastClick} size='lg' variant='light' style={{fontSize: '36px', width: '50%', height: '5rem', marginBottom: '1rem'}}><i><u>Past Events</u></i> <b>↓</b></Button>
                 </Row>
                 <Collapse isOpen={show}>
                   <Row style={{marginLeft: '8%'}} h='100%'>
