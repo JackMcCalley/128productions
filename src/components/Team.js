@@ -95,7 +95,7 @@ export default function Collective() {
             p={{x: "3rem", y: '1rem'}}
             flexWrap='wrap'
             transform={{xs: 'translateY(180%)', md: 'translateY(300%)'}}
-            bg="#ec2163"
+            bg="#44d9e8"
           >
             {teamText}
           </Text>
