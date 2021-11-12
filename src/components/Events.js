@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Row, Col, Div, Collapse} from 'atomize'
+import {Row, Col, Div, Collapse, Text, Container} from 'atomize'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import "react-simple-flex-grid/lib/main.css";
@@ -73,11 +73,11 @@ export default function Events() {
       }
       if (today < eventDate){
         return(  
-          <Col size="4" style={{marginBottom: '30px'}} h="auto">
-            <Card bg='black' border='light' style={{width: '21rem', alignItems: 'stretch'}}>
+          <Col size={{sm: "12", md: '6', lg: '4'}} style={{marginBottom: '30px'}} h="auto">
+            <Card bg='black' border='light' style={{width: '20rem', alignItems: 'stretch'}}>
               <Div 
-                w= {{xs: '15rem', md: '20rem'}}
-                h= {{xs: '15rem', md: '20rem'}}
+                w= {{xs: '15rem', md: '19.8rem'}}
+                h= {{xs: '15rem', md: '19.8rem'}}
                 justify='center' 
                 align='center' 
                 d='flex'
@@ -111,15 +111,15 @@ export default function Events() {
         return(
           <Col size="4" style={{marginBottom: '30px'}} h="auto">
             <Div justify='center'>
-            <Card bg='black' border='light' style={{width: '21rem', alignItems: 'stretch'}}>
+            <Card bg='black' border='light' style={{width: '20rem', alignItems: 'stretch'}}>
               <Div 
-                w= {{xs: '15rem', md: '20rem'}}
+                w= {{xs: '15rem', md: '19.8rem'}}
                 h= {{xs: '15rem', md: '20rem'}}
                 justify='center' 
                 align='center' 
                 d='flex'
               >
-              <Card.Img variant="top" src={event.image.url} />
+                <Card.Img variant="top" src={event.image.url} />
               </Div>
               <Card.Body style={{width: '20rem', height: '15rem'}}>
                 <Card.Title style={{fontSize: "2rem"}} >{title}</Card.Title>
@@ -143,21 +143,29 @@ export default function Events() {
                 <Row style={styles.main}>
                     <span style={styles.title}>EVENTS</span>
                 </Row>
-                <Row 
-                  justify='space-between' 
-                  d="flex" 
-                  flexWrap="wrap" 
-                  flexDir={{ xs: 'column', lg: 'row'}} 
-                  maxH={{ xs: 'auto', md: '100vp'}}
-                  style={{marginLeft: '8%'}}
-                >
-                  {eventArray}
-                </Row>
+                  <Row           
+                    d="flex" 
+                    flexWrap="wrap" 
+                    justify='space-around' 
+                    flexDir={{ xs: 'column', lg: 'row'}} 
+                    maxH={{ xs: 'auto', lg: '100vp'}}
+                    style={{marginLeft: '5%'}}
+                  >
+                    {eventArray}
+                  </Row>
                 <Row w='100vw' justify='center'>
-                  <Button onClick={pastClick} size='lg' variant='light' style={{fontSize: '36px', width: '50%', height: '5rem', marginBottom: '1rem'}}><i><u>Past Events</u></i> <b>↓</b></Button>
+                  <Button onClick={pastClick} size='lg' variant='light' style={{width: '15rem', height: '5rem', marginBottom: '1rem'}}>
+                    <Text textSize={{xs: 'title', lg: 'display1'}}><i><u>Past Events</u></i> ↓<b></b></Text>
+                  </Button>
                 </Row>
                 <Collapse isOpen={show}>
-                  <Row style={{marginLeft: '8%'}} h='100%'>
+                  <Row 
+                    d="flex" 
+                    flexWrap="wrap" 
+                    justify='space-around'
+                    h='100%' 
+                    flexDir={{ xs: 'column', md: 'row'}} 
+                    m={{x: {sm: '0rem',  md: '1rem'}}}>
                     {pastEvents}
                   </Row>
                 </Collapse>
@@ -178,6 +186,5 @@ const styles = {
     },
     button: {
         width: '15rem',
-        // marginLeft: '25%'
     }
 }

@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import { Row, Col, Container, Div, Image, Text } from 'atomize'
-import { Button, Card } from 'react-bootstrap'
+import { Row, Col, Container, Div, Text } from 'atomize'
+import { Button, Card, Modal, Image } from 'react-bootstrap'
 import '../css/collective.css'
-import ReactModal from 'react-modal'
+import '../css/modal.css'
 
 const query = `
 {
@@ -27,12 +27,13 @@ const query = `
 export default function Collective() {
 
     const [page, setPage] = useState(null);
-    const [modalIsOpen, setIsOpen] = React.useState(false)
     const [description, setDescription] = useState(null)
+    const [name, setName] = useState(null)
 
-    function closeModal(){
-      setIsOpen(false)
-    }
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() => {
         window
@@ -66,51 +67,44 @@ export default function Collective() {
         let collectiveDescription = collective.artistImage.description
         
         return(
-            <Col key={id} size="6" style={{paddingBottom: '30px'}}>
-              <Card border='secondary' bg='black'>
+            <Col key={id} size={{sm: '11', md: '6'}} style={{paddingBottom: '30px'}}>
               <Container 
                 flexDir={{xs: 'col', md: 'row'}} 
                 flexWrap="wrap"
+                border='solid'
+                borderColor='info400'
+                justify='center'
+                w={{xs: '20rem', md: '30rem'}}
+                h={{xs: '20rem', md: '30rem'}}
+                align='center' 
+                d='flex'
+                bg='black'
               >
-                <Div 
-                  bg="black" 
-                  w={{xs: '20rem', md: '30rem'}}
-                  h={{xs: '20rem', md: '30rem'}}
-                  justify='center' 
-                  align='center' 
-                  d='flex'
+                <Image
+                  fluid
+                  style={styles.image}
+                  alt="artist" 
+                  src={collective.artistImage.url}
+                  style={{padding: '5px', maxHeight: '20rem'}}
+                />
+                <Text 
+                  textColor="white"  
+                  pos='absolute'
+                  textSize='2rem'
+                  d="flex"
+                  p={{x: "3rem", y: '1rem'}}
+                  flexWrap='wrap'
+                  transform={{xs: 'translateY(180%)', md: 'translateY(300%)'}}
+                  bg="#ec2163"
                 >
-                  <Image 
-                    pos='static' 
-                    top='0' 
-                    right='0' 
-                    h='auto' 
-                    w='auto' 
-                    maxW= {{xs: '20rem', md: '30rem'}}
-                    maxH= {{xs: '20rem', md: '30rem'}}
-                    alt="artist" 
-                    src={collective.artistImage.url}
-                  />
-                  <Text 
-                    textColor="white"  
-                    pos='absolute'
-                    textSize='2rem'
-                    d="flex"
-                    p={{x: "3rem", y: '1rem'}}
-                    flexWrap='wrap'
-                    transform={{xs: 'translateY(180%)', md: 'translateY(300%)'}}
-                    bg="#ec2163"
-                  >
-                    {collectiveText}
-                  </Text>
-                </Div>
-                <Div>
-                <Button variant='light' onClick={() => {setDescription(collectiveDescription); setIsOpen(true);}}>
-                  <i><u>Read more...</u></i>
-                </Button>
-                </Div>
+                  {collectiveText}
+                </Text>
               </Container>
-              </Card>
+              <Div m={{x: '40%'}} w='10rem'>
+              <Button variant='light' onClick={() => {setDescription(collectiveDescription); setName(collectiveText); handleShow()}}>
+                  <i><u>Read more...</u></i>
+              </Button>
+              </Div>
             </Col>
           )
       })    
@@ -123,30 +117,17 @@ export default function Collective() {
         <Container d="flex" flexWrap="wrap" flexDir={{ xs: 'column', lg: 'row'}}>
           {collectiveArray}
         </Container>
-        <Div>
-          <ReactModal
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
-            style={{
-              content: styles.content,
-              overlay: {
-                width: '80%',
-                height: '1rem',
-                marginLeft: '10%',
-                marginTop: '25%',
-                color: 'black'
-              }}}
-            contentLabel="More Info"
-            ariaHideApp={false}
-          >
-            <Text>
-              {description}
-            </Text>
-            <Button variant='dark' onClick={closeModal}>
+        <Modal className="special_modal" bgColor="white" show={show} onHide={handleClose}>
+          <Modal.Header>
+            <Modal.Title></Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{description}</Modal.Body>
+          <Modal.Footer>
+            <Button variant="light" onClick={handleClose}>
               Close
             </Button>
-          </ReactModal>
-        </Div>
+          </Modal.Footer>
+        </Modal>
       </div>
       )
     }
@@ -177,5 +158,14 @@ const styles = {
       color: 'black',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+    },
+    image: {
+      position:'static',
+      top:'0',
+      right:'0',
+      height:'auto',
+      width:'auto',
+      maxWidth:'20rem',
+      maxHeight:'20rem'
     }
 }
