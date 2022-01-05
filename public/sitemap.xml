@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<url>
+    <loc>https://www.128productions.com/</loc>
+    <lastmod>2022-01-05T18:21:12+00:00</lastmod>
+</url>
+<url>
+    <loc>https://www.128productions.com/photos</loc>
+</url>
+<url>
+    <loc>https://www.128productions.com/events</loc>
+</url>
+<url>
+    <loc>https://www.128productions.com/collective</loc>
+</url>
+<url>
+    <loc>https://www.128productions.com/team</loc>
+</url>
+<url>
+    <loc>https://www.128productions.com/merch</loc>
+</url>
+</urlset>

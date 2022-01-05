@@ -76,8 +76,8 @@ export default function Events() {
           <Col size={{sm: "12", md: '6', lg: '4'}} style={{marginBottom: '30px'}} h="auto">
             <Card bg='black' border='light' style={{width: '20rem', alignItems: 'stretch'}}>
               <Div 
-                w= {{xs: '15rem', md: '19.8rem'}}
-                h= {{xs: '15rem', md: '19.8rem'}}
+                w= {{xs: '19.8rem', md: '19.8rem'}}
+                h= {{xs: '19.8rem', md: '19.8rem'}}
                 justify='center' 
                 align='center' 
                 d='flex'
@@ -109,12 +109,11 @@ export default function Events() {
       }
       if (today > eventDate){
         return(
-          <Col size="4" style={{marginBottom: '30px'}} h="auto">
-            <Div justify='center'>
+          <Col size={{sm: "12", md: '6', lg: '4'}} style={{marginBottom: '30px'}} h="auto">
             <Card bg='black' border='light' style={{width: '20rem', alignItems: 'stretch'}}>
               <Div 
-                w= {{xs: '15rem', md: '19.8rem'}}
-                h= {{xs: '15rem', md: '20rem'}}
+                w= {{xs: '19.8rem', md: '19.8rem'}}
+                h= {{xs: '19.8rem', md: '19.8rem'}}
                 justify='center' 
                 align='center' 
                 d='flex'
@@ -128,7 +127,6 @@ export default function Events() {
                 <Card.Text>{event.location}</Card.Text>
               </Card.Body>
             </Card>
-            </Div>
           </Col>
         )
       } else return <div></div>
@@ -146,7 +144,7 @@ export default function Events() {
                   <Row           
                     d="flex" 
                     flexWrap="wrap" 
-                    justify='space-around' 
+                    justify='start' 
                     flexDir={{ xs: 'column', lg: 'row'}} 
                     maxH={{ xs: 'auto', lg: '100vp'}}
                     style={{marginLeft: '5%'}}
@@ -162,10 +160,10 @@ export default function Events() {
                   <Row 
                     d="flex" 
                     flexWrap="wrap" 
-                    justify='space-around'
-                    h='100%' 
-                    flexDir={{ xs: 'column', md: 'row'}} 
-                    m={{x: {sm: '0rem',  md: '1rem'}}}>
+                    justify='start' 
+                    flexDir={{ xs: 'column', lg: 'row'}} 
+                    maxH={{ xs: 'auto', lg: '100vp'}}
+                    style={{marginLeft: '5%'}}>
                     {pastEvents}
                   </Row>
                 </Collapse>
@@ -178,7 +176,8 @@ const styles = {
         fontSize: '48px',
         marginBottom: '20px',
         color: '#fff',
-        justifyContent: 'center'
+        justifyContent: 'start',
+        marginLeft: '5%'
     },
     title: {
         borderBottom: '5px solid #44d9e8',

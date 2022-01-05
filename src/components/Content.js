@@ -36,10 +36,9 @@ const Content = () => (
                 <Route exact path='/team' component={Team} />
             </Switch>
         </Router>
-        
     </div>
     <div>
-        <Footer />
+        <Footer/>
     </div>
     </div>
 )

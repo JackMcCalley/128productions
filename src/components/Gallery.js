@@ -81,7 +81,8 @@ const styles = {
     title:{
         fontSize: '48px',
         color: "white",
-        justifyContent: 'center'
+        justifyContent: 'start',
+        marginLeft: '5%'
     },
     titletext:{
         borderBottom: '5px solid #44d9e8',

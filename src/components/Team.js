@@ -90,20 +90,22 @@ export default function Collective() {
           <Text 
             textColor="white"  
             pos='absolute'
-            textSize='2rem'
+            border='solid'
+            borderColor='white'
+            textSize='1.8rem'
             d="flex"
-            p={{x: "3rem", y: '1rem'}}
+            p={{x: "2rem", y: '.5rem'}}
             flexWrap='wrap'
-            transform={{xs: 'translateY(180%)', md: 'translateY(300%)'}}
+            transform={{xs: 'translateY(240%)', md: 'translateY(400%)'}}
             bg="#44d9e8"
           >
             {teamText}
           </Text>
         </Container>
         <Div m={{x: '40%'}} w='10rem'>
-        <Button variant='light' onClick={() => {setDescription(teamDescription); setName(teamText); handleShow()}}>
-            <i><u>Read more...</u></i>
-        </Button>
+          <Button variant='light' onClick={() => {setDescription(teamDescription); setName(teamText); handleShow()}}>
+              <i><u>Read more...</u></i>
+          </Button>
         </Div>
       </Col>
         )
@@ -137,7 +139,8 @@ const styles = {
     fontSize: '48px',
     fontFamily: 'Inherit',
     color: 'white',
-    justifyContent: 'center'
+    justifyContent: 'start',
+    marginLeft: '5%'
 },
 pics: {
     width: '100%',

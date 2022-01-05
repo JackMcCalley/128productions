@@ -280,7 +280,8 @@ const styles = {
     },
     title: {
         borderBottom: '5px solid #44d9e8',
-        justifyContent: 'center'
+        justifyContent: 'start',
+        marginLeft: '5%'
     },
     button: {
         width: '15rem',
