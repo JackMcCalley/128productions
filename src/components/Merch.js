@@ -276,12 +276,12 @@ const styles = {
         fontSize: '48px',
         marginBottom: '20px',
         color: '#fff',
-        justifyContent: 'center'
+        justifyContent: 'start',
+        marginLeft: '5%'
     },
     title: {
         borderBottom: '5px solid #44d9e8',
         justifyContent: 'start',
-        marginLeft: '5%'
     },
     button: {
         width: '15rem',
